@@ -11,6 +11,7 @@ import ReactLogo from '../components/ReactLogo.jsx'
 import Cube from '../components/Cube.jsx'
 import Rings from '../components/Rings.jsx'
 import HeroCamera from '../components/HeroCamera.jsx'
+import Button from '../components/Button.jsx'
 
 const Hero = () => {
     // useControls is a hook that is used to create controls for the model
@@ -128,6 +129,20 @@ const Hero = () => {
                     </Suspense>
                 </Canvas>
 
+            </div>
+
+            {/* This is the button that is at the bottom of the section */}
+            {/* The button is a link to the contact section, and is a custom component to reuse in the future */}
+            {/* absolute + bottom-7 makes sure the button is at the bottom of the section */}
+            {/* left-0 + right-0 makes sure the button takes the full width of the section */}
+            {/* z-10 makes sure the button is on top of the other elements */}
+            <div className='absolute bottom-7 left-0 right-0 w-full z-10 c-space'>
+                {/* w-fit makes sure the button is only as wide as the content */}
+                <a href="#contact" className='w-fit'>
+                    {/* isBeam is a prop that makes the button have a beam effect */}
+                    {/* containerClass is a prop that is used to style the button, input to the component*/}
+                    <Button name="Let's work together" isBeam containerClass="sm:w-fit w-full sm:min-w-96"/>
+                </a>
             </div>
         </section>
     )
