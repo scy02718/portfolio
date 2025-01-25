@@ -1,9 +1,27 @@
-import React from 'react'
+import { useState } from 'react'
 import { myProjects } from '../constants/index.js'
 
 const Projects = () => {
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
+
     // This value will change as the user swipes through the projects
-    const currentProject = myProjects[0]
+    const currentProject = myProjects[selectedProjectIndex]
+
+    const handleNavigation = (direction) => {
+        // This function will be used to navigate through the projects
+        // The direction will be either 'previous' or 'next'
+        // If the direction is 'previous', we will navigate to the previous project
+        // If the direction is 'next', we will navigate to the next project
+
+        // prevIndex is an internal state for setSelectedProjectIndex, which is the current project index
+        setSelectedProjectIndex((prevIndex) => {
+            if (direction === "previous") {
+                return prevIndex === 0 ? myProjects.length - 1 : prevIndex - 1
+            } else {
+                return prevIndex === myProjects.length - 1 ? 0 : prevIndex + 1
+            }
+        })
+    }
 
     return (
         // The section tag contains the projects section
@@ -75,6 +93,17 @@ const Projects = () => {
                             <p>Check Live Site</p>
                             <img src="assets/arrow-up.png" className='w-3 h-3' alt="arrow" />
                         </a>
+                    </div>
+
+                    {/* The navigation buttons */}
+                    {/* flex = Flexbox, justify-between = Space between the buttons, items-center = Align the children in the center, mt-7 = Margin top is 7 */}
+                    <div className='flex justify-between items-center mt-7'>
+                        <button className='arrow-btn' onClick={() => handleNavigation('previous')}>
+                            <img src="/assets/left-arrow.png" alt="left-arrow" className='w-4 h-4' />
+                        </button>
+                        <button className='arrow-btn' onClick={() => handleNavigation('next')}>
+                            <img src="/assets/right-arrow.png" alt="right-arrow" className='w-4 h-4' />
+                        </button>
                     </div>
                 </div>
             </div>
