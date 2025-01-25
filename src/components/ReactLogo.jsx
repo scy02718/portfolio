@@ -7,7 +7,7 @@ const ReactLogo = (props) => {
   // Manually adjust the scale, position, and rotation of the model to make it look gopd
   return (
     <Float floatIntensity={1}>
-        <group position={[8,8,0]} {...props} dispose={null}>
+        <group position={[8,8,0]} {...props} scale={1.2} dispose={null}>
             <mesh
                 geometry={nodes['React-Logo_Material002_0'].geometry}
                 material={materials['Material.002']}

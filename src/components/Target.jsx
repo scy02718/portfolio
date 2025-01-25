@@ -31,7 +31,7 @@ const Target = (props) => {
     // We need to animate it, using GSAP
     // When you pair Three.js with GSAP, an animation library, you become unstoppable
     return (
-        <mesh {...props} ref={targetRef} rotation={[0, Math.PI / 5, 0]}>
+        <mesh {...props} ref={targetRef} rotation={[0, Math.PI / 5, 0]} scale={1.2}>
             <primitive object={scene}/>
         </mesh>
     )

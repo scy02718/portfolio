@@ -10,6 +10,7 @@ import Target from '../components/Target.jsx'
 import ReactLogo from '../components/ReactLogo.jsx'
 import Cube from '../components/Cube.jsx'
 import Rings from '../components/Rings.jsx'
+import HeroCamera from '../components/HeroCamera.jsx'
 
 const Hero = () => {
     // useControls is a hook that is used to create controls for the model
@@ -102,11 +103,13 @@ const Hero = () => {
                         {/* This will lead to HTML tag inside Canvas, which is not allowed */}
                         {/* This gives Input is not part of the THREE namespace! error */}
                         {/* We need to move the HTML tag (Leva) outside of the Canvas */}
-                        <HackerRoom 
-                            position={sizes.deskPosition}
-                            rotation={[0, -Math.PI, 0]}
-                            scale={sizes.deskScale}
-                        />
+                        <HeroCamera isMobile={isMobile}>
+                            <HackerRoom 
+                                position={sizes.deskPosition}
+                                rotation={[0, -Math.PI, 0]}
+                                scale={sizes.deskScale}
+                            />
+                        </HeroCamera>
 
                         {/* Inside the group are custom component for floating elemtents */}
                         {/* Again, within Canvas we cannot have <div> tags */}

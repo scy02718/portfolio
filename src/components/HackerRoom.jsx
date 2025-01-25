@@ -9,6 +9,9 @@ import { useGLTF, useTexture } from '@react-three/drei';
 const HackerRoom = (props) => {
   const { nodes, materials } = useGLTF('/models/hacker-room.glb');
 
+  // Textures are used to add images to the models
+  // Always change the image if want to
+  // The texture is placed inside the mesh as meshMatcapMaterial
   const monitortxt = useTexture('textures/desk/monitor.png');
   const screenTxt = useTexture('textures/desk/screen.png');
 
