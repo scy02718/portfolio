@@ -1,15 +1,23 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PerspectiveCamera } from '@react-three/drei'
+import { PerspectiveCamera, Ring } from '@react-three/drei'
 import HackerRoom from '../components/HackerRoom'
 import CanvasLoader from '../components/CanvasLoader'
 import { Leva, useControls } from 'leva';
+import { useMediaQuery } from 'react-responsive'
+import { calculateSizes } from '../constants/index.js'
+import Target from '../components/Target.jsx'
+import ReactLogo from '../components/ReactLogo.jsx'
+import Cube from '../components/Cube.jsx'
+import Rings from '../components/Rings.jsx'
 
 const Hero = () => {
     // useControls is a hook that is used to create controls for the model
     // The first parameter is the name of the model, the second parameter is an object with the controls
     // value = The initial value of the control, min = The minimum value of the control, max = The maximum value of the control
     // This is attached to Leva tag to show the controls on the screen
+    // The controls can be used to FIND the best position, rotation, and scale for the model
+    /*
     const x = useControls('HackerRoom', {
         positionX:{
             value: 2.5,
@@ -47,7 +55,17 @@ const Hero = () => {
             max: 2,
         }
     })
+    */
     
+    // This is a hook that is used to check if the screen is mobile or tablet, determined by the width
+    // We can dynamically change the size of the model based on the screen size
+    const isSmall = useMediaQuery({ maxWidth: 440 });
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+
+    // The sizes object contains the experimentally found best position, rotation, and scale for the model
+    const sizes = calculateSizes(isSmall, isMobile, isTablet);
+
     return (
         // min-h-screen makes sure the section is at least the height of the screen
         // w-full makes sure the section takes the full width of the screen
@@ -68,7 +86,8 @@ const Hero = () => {
             {/* w-full + h-full makes sure the element takes the full width and height */} 
             <div className='w-full h-full absolute inset-0'>
                 {/* This has to be outside of the Canvas tag */}
-                <Leva />
+                {/* This is not required anymore, as the values have been found */}
+                {/*<Leva />*/}
                 {/* This is the start of Three JS */}
                 {/* npm install three @react-three/fiber @react-three/drei react-responsive leva */}
                 <Canvas className='w-full h-full'>
@@ -76,7 +95,7 @@ const Hero = () => {
                     {/* If Suspense is not used, the page will be blank until the model is loaded */}
                     <Suspense fallback={<CanvasLoader />}>
                         {/* Within a canvas we must have a camera */}
-                        <PerspectiveCamera makeDefault position={[0, 0, 30]} />
+                        <PerspectiveCamera makeDefault position={[0, 0, 20]} />
                         {/* With the camera and canvas, we add a model, in this case, HackerRoom */}
                         {/* This currently does not work as vanilla. We should manually experiment with position, rotation, and scale */}
                         {/* For control, use the useControl variables. However, we cannot directly use it in the component */}
@@ -84,10 +103,20 @@ const Hero = () => {
                         {/* This gives Input is not part of the THREE namespace! error */}
                         {/* We need to move the HTML tag (Leva) outside of the Canvas */}
                         <HackerRoom 
-                            position={[x.positionX, x.positionY, x.positionZ]}
-                            rotation={[x.rotationX, x.rotationY, x.rotationZ]}
-                            scale={[x.scale, x.scale, x.scale]}
+                            position={sizes.deskPosition}
+                            rotation={[0, -Math.PI, 0]}
+                            scale={sizes.deskScale}
                         />
+
+                        {/* Inside the group are custom component for floating elemtents */}
+                        {/* Again, within Canvas we cannot have <div> tags */}
+                        <group>
+                            <Target position={sizes.targetPosition}/>
+                            <ReactLogo position={sizes.reactLogoPosition}/>
+                            <Cube position={sizes.cubePosition}/>
+                            <Rings position={sizes.ringPosition}/>
+                        </group>
+
                         {/* Without Light, we cannot see the model */}
                         {/* AmbientLight is a light that affects all objects in the scene equally */}
                         <ambientLight intensity={1} />
