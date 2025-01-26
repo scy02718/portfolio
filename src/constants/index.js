@@ -261,33 +261,45 @@ export const navLinks = [
       targetPosition: isSmall ? [-5, -10, -10] : isMobile ? [-9, -10, -10] : isTablet ? [-11, -7, -10] : [-13, -13, -10],
     };
   };
+
+  export const educations = [
+    {
+      id: 1,
+      provider: 'University of Auckland',
+      degree: 'Bachelor of Engineering (Honours) in Software Engineering',
+      duration: '2021 - 2024',
+      logo: '/assets/uoa_color.png',
+      gpa: '8.55 / 9.0',
+      transcript: '/assets/uoa_transcript.pdf',
+    },
+  ]
   
   export const workExperiences = [
     {
       id: 1,
-      name: 'Framer',
-      pos: 'Lead Web Developer',
-      duration: '2022 - Present',
-      title: "Framer serves as my go-to tool for creating interactive prototypes. I use it to bring designs to  life, allowing stakeholders to experience the user flow and interactions before development.",
-      icon: '/assets/framer.svg',
+      name: 'Health Initiatives',
+      pos: 'Founding Member / Tech Lead',
+      duration: '2024 - Present',
+      title: "Health Initiatives is an AI-SaaS platform that enhances consultation efficiencies for Healthcare Providers. It leverages AI to automate patient data collection, enabling doctors to focus on the essentials. I'm responsible for the platform's architecture, development, and deployment.",
+      icon: '/assets/health-initiatives.png',
       animation: 'victory',
     },
     {
       id: 2,
-      name: 'Figma',
-      pos: 'Web Developer',
-      duration: '2020 - 2022',
-      title: "Figma is my collaborative design platform of choice. I utilize it to work seamlessly with team members and clients, facilitating real-time feedback and design iterations. Its cloud-based.",
-      icon: '/assets/figma.svg',
+      name: 'Resideo NZ',
+      pos: 'Machine Learning Intern',
+      duration: '2023 - 2024',
+      title: "Resideo is a leading provier for home comfort and security solutions. As a Machine Learning Intern, I developed object detection models for smart home devices, addressing common security risks such as Housefire and Falls.",
+      icon: '/assets/resideo.png',
       animation: 'clapping',
     },
     {
       id: 3,
-      name: 'Notion',
-      pos: 'Junior Web Developer',
-      duration: '2019 - 2020',
-      title: "Notion helps me keep my projects organized. I use it for project management, task tracking, and as a central hub for documentation, ensuring that everything from design notes to.",
-      icon: '/assets/notion.svg',
+      name: 'University of Auckland',
+      pos: 'AI Research Assistant',
+      duration: '2023',
+      title: "I worked as an AI Research Assistant at the University of Auckland, where I developed an AI model for predicting Electrocardiographic (ECG) signals from Body Surface Potentials. I explored the potential of AI in predicting heart conditions, for eventual use in Wearable devices. ",
+      icon: '/assets/uoa.svg',
       animation: 'salute',
     },
   ];

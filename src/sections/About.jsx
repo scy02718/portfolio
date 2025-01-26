@@ -87,8 +87,8 @@ const About = () => {
                     <div className='grid-container'>
                         <img src="/assets/grid3.png" alt="grid-3" className='w-full sm:h-[266px] h-fit object-contain' />
                         <div>
-                            <p className='grid-headtext'>My Passion</p>
-                            <p className='grid-subtext'>I want to use my expertise in Technology to give positive impact to the world.</p>
+                            <p className='grid-headtext'>Profile Summary</p>
+                            <p className='grid-subtext'>As a recent graduate in Software Engineering from the University of Auckland with an outstanding GPA of 8.55 out of 9, I bring a strong ability to tackle complex challenges and an eagerness to learn. I have always tried to use my technical expertise to make products that help people in society. Equipped with 3 AWS Certifications and a strong background in Software Development principles and practices, I am eager to make an impactful contribution as a Software Enginner</p>
                         </div>
                     </div>
                 </div>
