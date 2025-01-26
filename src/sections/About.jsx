@@ -20,7 +20,8 @@ const About = () => {
     }
     return (
         // c-space is a custom class that adds padding to the top and bottom of the section, my-20 adds margin to the top and bottom
-        <section className='c-space my-20'>
+        // The id of about allows any link with href="#about" to scroll to this section
+        <section className='c-space my-20' id="about">
             {/* The section has a grid layout */}
             {/* The grid has 3 columns for extra large screens, 2 columns for medium screens, and 1 column for small screens */}
             {/* The grid has 6 rows for extra large screens, 3 rows for medium screens, and 1 row for small screens */}

@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scroll-behavior allows smooth scrolling */
 * {
   scroll-behavior: smooth;
 }

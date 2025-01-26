@@ -32,7 +32,7 @@ const Projects = () => {
         // Each component should have a section tag
         // c-space is a custom class that adds padding to the top and bottom of the section
         // my-20 adds margin to the top and bottom
-        <section className='c-space my-20'>
+        <section className='c-space my-20' id="work">
             {/* The section has a grid layout */}
             {/* The grid has 2 columns for large screens, and 1 column for small screens */}
             {/* The gap between the columns is 5, with a margin top of 12 */}

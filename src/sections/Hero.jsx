@@ -73,7 +73,8 @@ const Hero = () => {
         // w-full makes sure the section takes the full width of the screen
         // flex + flex-col makes sure the children are in a column
         // relative is used to position the elements inside the section
-        <section className='min-h-screen w-full flex flex-col relative'>
+        // The id of home allows any link with href="#home" to scroll to this section. Animation is automatically added
+        <section className='min-h-screen w-full flex flex-col relative' id="home">
             {/* mx-auto is used to center the content */}
             {/* Different mt between mobile and web are to counteract the navbar height */}
             <div className='w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3'>
@@ -138,7 +139,8 @@ const Hero = () => {
             {/* z-10 makes sure the button is on top of the other elements */}
             <div className='absolute bottom-7 left-0 right-0 w-full z-10 c-space'>
                 {/* w-fit makes sure the button is only as wide as the content */}
-                <a href="#contact" className='w-fit'>
+                {/* When you give href as #about, it will scroll to the section with the id about */}
+                <a href="#about" className='w-fit'>
                     {/* isBeam is a prop that makes the button have a beam effect */}
                     {/* containerClass is a prop that is used to style the button, input to the component*/}
                     <Button name="Let's work together" isBeam containerClass="sm:w-fit w-full sm:min-w-96"/>
