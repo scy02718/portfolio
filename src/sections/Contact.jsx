@@ -84,8 +84,6 @@ const Contact = () => {
 
     }
 
-    //service_s7tu6kp
-
     return (
         // c-space is a custom class that adds padding to the top and bottom of the section, my-20 adds margin to the top and bottom
         // The id of contact allows any link with href="#contact" to scroll to this section
@@ -99,7 +97,7 @@ const Contact = () => {
                 {/* absolute means the element is positioned relative to the nearest positioned ancestor */}
                 {/* inset-0 means the element is positioned at the top, right, bottom, and left */}
                 {/* min-h-screen makes sure the element is at least the height of the screen */}
-                <img src="/assets/terminal.png" alt="Terminal Background" className='absolute inset-0 min-h-screen' />
+
                 <div className='contact-container'>
                     <h3 className='head-text'>Let's Talk</h3>
                     <p className='text-lg text-white-600 mt-3'>Whether you're looking to build a new software, improve your existing platform, bring a unique project to life, or just chat with me, I'm here to help!</p>
