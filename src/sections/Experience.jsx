@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import { workExperiences } from '../constants/index.js'
 import { OrbitControls } from '@react-three/drei'
 import CanvasLoader from '../components/CanvasLoader'
@@ -17,6 +17,9 @@ const Experience = () => {
     // 와 되게 재밌닼ㅋㅋㅋㅋㅋㅋ 이제 애니메이션을 직접 만드는거임.. 대박 관절의 위치를 조정해주면 알아서 스켈레톤을 만들어줌
     // 어떻게 이런게 다 공짜지?
     // The Right container will contain a list of my work experience
+
+    // This state will be used to automatically change the animation of the 3D model!
+    const [animationName, setAnimationName] = useState('idle')
 
     return (
         // This section will have an id of experience
@@ -50,7 +53,7 @@ const Experience = () => {
                             {/* Inside will be the actual 3D model */}
                             {/* Simply displaying the Model is possible. Now, how do we animate them? */}
                             <Suspense fallback={<CanvasLoader />}>
-                                <Developer position-y={-3} scale={3} />
+                                <Developer animationName={animationName} position-y={-3} scale={3} />
                             </Suspense>
                         </Canvas>
                     </div>
@@ -66,7 +69,10 @@ const Experience = () => {
                             {workExperiences.map(({id, name, pos, duration, title, icon, animation}) => (
                                 // This div will be the w-full container containing everything about that experience
                                 // "group" class will add padding to the top and bottom
-                                <div key={id} className='work-content_container group'>
+                                // The animation should be set appropriately so that it matches the desired actions
+                                // When the div is hovered or clicked, the animation will change
+                                <div key={id} className='work-content_container group' onClick={() => setAnimationName(animation.toLowerCase())}
+                                onPointerOver={() => setAnimationName(animation.toLowerCase())} onPointerOut={() => setAnimationName('idle')}>
                                     {/* This div will contain the logo */}
                                     {/* It will take full height, justify the content to the start and center the items */}
                                     {/* Flex was used to use the justify and items properties */}
