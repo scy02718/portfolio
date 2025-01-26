@@ -1,5 +1,9 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { myProjects } from '../constants/index.js'
+import { Canvas } from '@react-three/fiber'
+import { Center, OrbitControls } from '@react-three/drei'
+import CanvasLoader from '../components/CanvasLoader'
+import DemoComputer from '../components/Democomputer.jsx'
 
 const Projects = () => {
     const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
@@ -105,6 +109,38 @@ const Projects = () => {
                             <img src="/assets/right-arrow.png" alt="right-arrow" className='w-4 h-4' />
                         </button>
                     </div>
+                </div>
+                
+                {/* Interactive project display, using 3D models */}
+                {/* border = Border around the container, border-black-300 = Border color is black-300, bg-black-200 = Background color is black-200 */}
+                {/* rounded-lg = Rounded corners, h-96 = Height is 96, md:h-full = Height is full on medium screens */}
+                <div className='border border-black-300 bg-black-200 rounded-lg h-96 md:h-full'>
+                    {/* First draw the canvas, which acts as the container for the 3D models */}
+                    {/* Again, you cannot have an HTML tag inside a canvas */}
+                    <Canvas>
+                        {/* Define two lights, ambient and directional */}
+                        <ambientLight intensity={Math.PI} />
+                        <directionalLight position={[10,10,5]} intensity={1} />
+
+                        {/* Center is a component from drei, which easily centers the children into the canvas*/}
+                        <Center>
+                            {/* Again, suspense is what you show while you are loading the 3D models */}
+                            <Suspense fallback={<CanvasLoader />}>
+                                {/* Inside will be a group of 3D models */}
+                                {/* The parameters scale, position and rotation are manually set */}
+                                {/* Inside will be computer, which is a component just like other 3D models */}
+                                <group scale={2} position={[0,-3,0]} rotation={[0,-0.1,0]}>
+                                    {/* Provide the texture to the computer, which is stored in index.js */}
+                                    <DemoComputer texture={currentProject.texture} />
+                                </group>
+                            </Suspense>
+                        </Center>
+
+                        {/* OrbitControls is a component from drei, which allows you to rotate and zoom the 3D models */}
+                        {/* maxPolarAngle = Maximum angle the camera can rotate vertically */}
+                        {/* We will disable zoom for this project */}
+                        <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
+                    </Canvas>
                 </div>
             </div>
         </section>
