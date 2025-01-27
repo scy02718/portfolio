@@ -19,13 +19,13 @@ const Education = () => {
                                 <div className='flex gap-10 justify-start items-center'>
                                     <div className='flex flex-col h-full justify-start items-center py-2'>
                                         <div className='education-content_logo'>
-                                            <img src={logo} alt="logo" className='w-full h-full' />
+                                            <img src={logo} alt="logo" className='w-full h-full rounded-lg' />
                                         </div>
                                     </div>
                                     <div>
                                         <p className='education-text_provider'>{provider}</p>
                                         <p className='education-text_major'>{degree} -- {duration}</p>
-                                        <p className='mt-2 text-2xl group-hover:text-white transition ease-in-out duration-500'>GPA : {gpa}</p>
+                                        <p className='mt-2 text-2xl group-hover:text-white transition ease-in-out duration-500'>{gpa}</p>
                                     </div>
                                 </div>
 
@@ -50,6 +50,8 @@ const Education = () => {
                                     View Transcript
                                     <img src="/assets/right-arrow.png" alt="arrow" className='w-3 h-3 ml-2' />
                                 </button>}
+
+                            <hr className='border border-black-300 mt-10' />
                         </div>
                     ))}
                 </div>

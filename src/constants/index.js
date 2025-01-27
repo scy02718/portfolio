@@ -26,12 +26,17 @@ export const navLinks = [
     },
     {
       id: 6,
+      name: 'Skills',
+      href: '#skills',
+    },
+    {
+      id: 7,
       name: 'Work',
       href: '#work',
     },
 
     {
-      id: 7,
+      id: 8,
       name: 'Contact',
       href: '#contact',
     },
@@ -120,6 +125,7 @@ export const navLinks = [
       link: 'https://www.credly.com/badges/5d8ba519-f545-49a6-9b04-448c97a15a23/',
     },
   ]
+
   
   export const myProjects = [
     {
@@ -329,7 +335,7 @@ export const navLinks = [
       degree: 'Bachelor of Engineering (Honours) in Software Engineering',
       duration: '2021 - 2024',
       logo: '/assets/uoa_color.png',
-      gpa: '8.55 / 9.0',
+      gpa: 'GPA : 8.55 / 9.0',
       transcript: '/assets/uoa_transcript.pdf',
       skills: [
         'Algorithm and Data Structures',
@@ -337,6 +343,20 @@ export const navLinks = [
         'Machine Learning',
       ],
       overview: "Graduated with First Class Honours in Software Engineering from the University of Auckland with an outstanding GPA of 8.55 / 9.0. Mastered wide ranges of skills from Web Development, Machine Learning, to Algorithm and Data Structures, through many practical team projects and research.",
+    },
+    {
+      id: 2,
+      provider: 'Westlake Boys High School',
+      degree: 'High School Diploma',
+      duration: '2016 - 2020',
+      logo: '/assets/wbhs.png',
+      gpa: 'Rank Score: 320 / 320',
+      skills: [
+        'Teamwork',
+        'Leadership',
+        'Problem Solving',
+      ], 
+      overview: "Graduated with perfect Rank Score of 320 / 320 from Westlake Boys High School. Developed strong teamwork, leadership, and problem-solving skills through various extracurricular activities and academic competitions. Received Outstanding Schoalr Award, as well as Top student in Mathematics and Physics.",
     },
   ]
   

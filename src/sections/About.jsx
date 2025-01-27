@@ -45,7 +45,9 @@ const About = () => {
                 <div className='col-span-1 xl:row-span-3'>
                     <div className='grid-container'>
                         <img src="assets/grid2.png" alt="grid-2" className='w-full sm:h-[276px] h-fit object-contain' />
-                        <p className='grid-headtext'>Tech Stack</p>
+                        <a href="#skills" className='cursor-pointer'>
+                            <p className='grid-headtext'>Tech Stack <span>&#8594;</span></p>
+                        </a>
                         <p className='grid-subtext'>My Tech Stack spans from Full-stack Web Development, Cloud Architecture, to Machine Learning and Deep Learning.</p>
                     </div>
                 </div>
