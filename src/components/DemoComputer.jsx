@@ -39,7 +39,7 @@ const DemoComputer = ({ ...props }) => {
         gsap.from(group.current.rotation, {
             y: Math.PI / 2,
             duration: 1,
-            ease: 'power3.Out',
+            ease: 'power3.out',
         })
     }, [txt]);
 

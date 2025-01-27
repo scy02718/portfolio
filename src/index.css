@@ -106,7 +106,7 @@ body {
   }
 
   .education-content_container {
-    @apply flex flex-col justify-start items-start rounded-lg sm:px-10 px-5 py-7;
+    @apply flex flex-col justify-start rounded-lg sm:px-10 px-5 py-7;
   }
 
   .education-content_logo {
@@ -114,14 +114,12 @@ body {
   }
 
   .education-text_provider {
-    @apply text-2xl font-bold text-white-600 font-generalsans;
+    @apply text-xl font-bold text-white-800 font-generalsans;
   }
 
   .education-text_major {
     @apply text-lg text-white-500 font-generalsans;
   }
-
-
 
   /*  work experience section */
   .work-container {

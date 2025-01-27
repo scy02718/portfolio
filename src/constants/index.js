@@ -11,8 +11,8 @@ export const navLinks = [
     },
     {
       id: 3,
-      name: 'Work',
-      href: '#work',
+      name: 'Education',
+      href: '#education',
     },
     {
       id: 4,
@@ -21,6 +21,17 @@ export const navLinks = [
     },
     {
       id: 5,
+      name: 'Certificates',
+      href: '#certificates',
+    },
+    {
+      id: 6,
+      name: 'Work',
+      href: '#work',
+    },
+
+    {
+      id: 7,
       name: 'Contact',
       href: '#contact',
     },
@@ -60,6 +71,55 @@ export const navLinks = [
         'Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend backend dev are top-notch.',
     },
   ];
+
+  export const myCertificates =[
+    {
+      provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified Solutions Architect - Associate',
+      date: '19th December, 2024 - 19th December, 2027',
+      score: '0.806',
+      desc: 'Earners of this certification have a comprehensive understanding of AWS services and technologies. They demonstrated the ability to build secure and robust solutions using architectural design principles based on customer requirements. Badge owners are able to strategically design well-architected distributed systems that are scalable, resilient, efficient, and fault-tolerant.',
+      logo: 'assets/aws-solution-architect.png',
+      link: 'https://www.credly.com/badges/3f6db8d1-7d88-44e5-b070-038ca12d7219',
+      cert: 'assets/aws-solution-architect-cert.pdf',
+    },
+    {
+      provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified Machine Learning Engineer - Associate',
+      date: '7th January, 2025 - 7th January, 2028',
+      score: '0.901',
+      desc: 'Earners of this badge have knowledge and skills in developing, deploying, maintaining, and monitoring ML solutions to meet AI/ML objectives. They know how to ingest, transform, validate, and prepare data for ML modeling. They have skills in implementing and operationalizing ML workloads in production. They can select modeling approaches and analyze model performance. They have the expertise to monitor ML solutions and to secure ML systems and resources.',
+      logo: 'assets/aws-machine-learning.png',
+      link: 'https://www.credly.com/badges/651bc42b-9722-4edd-aa7f-80af3efcaaac',
+      cert: 'assets/aws-machine-learning-cert.pdf',
+    },
+    {
+      provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified AI Practitioner',
+      date: '4th January, 2025 - 4th January, 2028',
+      score: '0.813',
+      desc: 'Earners of this badge understand AI, ML, and generative AI concepts, methods, and strategies in general and on AWS. They can determine the correct types of AI/ML technologies to apply to specific use cases and know how to use AI, ML, and generative AI technologies responsibly. They are familiar with the AWS Global Infrastructure, core AWS services and use cases, AWS service pricing models, and the AWS shared responsibility model for security and compliance in the AWS Cloud.',
+      logo: 'assets/aws-ai-practitioner.png',
+      link: 'https://www.credly.com/badges/0329b33d-9258-4c52-861c-4317ac4f9b97/',
+      cert: 'assets/aws-ai-practitioner-cert.pdf',
+    },
+    {
+      provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified Machine Learning Engineer - Associate Early Adopter',
+      date: '7th January, 2025 - 7th January, 2028',
+      desc: 'Earners of this badge passed the AWS Certified Machine Leaning Engineer - Associate exam by February 15, 2025 and are an Early Adopter of this certification. It demonstrates the ability to quickly adapt to new technologies and stay ahead of the curve.',
+      logo: 'assets/aws-machine-learning-early.png',
+      link: 'https://www.credly.com/badges/d5538b32-de48-4d59-be1b-2cb1c11d744e/',
+    },
+    {
+      provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified AI Practitioner Early Adopter',
+      date: '4th January, 2025 - 4th January, 2028',
+      desc: 'Earners of this badge passed the AWS Certified AI Practitioner exam by February 15, 2025 and are an Early Adopter of this certification. It demonstrates the ability to quickly adapt to new technologies and stay ahead of the curve.',
+      logo: 'assets/aws-ai-practitioner-early.png',
+      link: 'https://www.credly.com/badges/5d8ba519-f545-49a6-9b04-448c97a15a23/',
+    },
+  ]
   
   export const myProjects = [
     {
@@ -271,6 +331,12 @@ export const navLinks = [
       logo: '/assets/uoa_color.png',
       gpa: '8.55 / 9.0',
       transcript: '/assets/uoa_transcript.pdf',
+      skills: [
+        'Algorithm and Data Structures',
+        'Web Development',
+        'Machine Learning',
+      ],
+      overview: "Graduated with First Class Honours in Software Engineering from the University of Auckland with an outstanding GPA of 8.55 / 9.0. Mastered wide ranges of skills from Web Development, Machine Learning, to Algorithm and Data Structures, through many practical team projects and research.",
     },
   ]
   

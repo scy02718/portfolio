@@ -53,7 +53,7 @@ const Experience = () => {
                             {/* Inside will be the actual 3D model */}
                             {/* Simply displaying the Model is possible. Now, how do we animate them? */}
                             <Suspense fallback={<CanvasLoader />}>
-                                <Developer animationName={animationName} position-y={-3} scale={3} />
+                                <Developer animationName={animationName}position-y={-3} scale={3} />
                             </Suspense>
                         </Canvas>
                     </div>
