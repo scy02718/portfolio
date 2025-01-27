@@ -126,6 +126,101 @@ export const navLinks = [
     },
   ]
 
+  export const mySkills = [
+    {
+      name: "Python",
+      type: "Programming Languages",
+      proficiency: 5
+    },
+    {
+      name: "Java",
+      type: "Programming Languages",
+      proficiency: 5
+    },
+    {
+      name: "Javascript",
+      type: "Programming Languages",
+      proficiency: 5
+    },
+    {
+      name: "Dart",
+      type: "Programming Languages",
+      proficiency: 4
+    },
+    {
+      name: "C#",
+      type: "Programming Languages",
+      proficiency: 3
+    },
+    {
+      name: "SQL",
+      type: "Programming Languages",
+      proficiency: 3
+    },
+    {
+      name: "React.js",
+      type: "Web Frameworks",
+      proficiency: 5
+    },
+    {
+      name: "Next.js",
+      type: "Web Frameworks",
+      proficiency: 5
+    },
+    {
+      name: "Flask",
+      type: "Mobile Frameworks",
+      proficiency: 3
+    },
+    {
+      name: "Django",
+      type: "Web Frameworks",
+      proficiency: 3
+    },
+    {
+      name: "Docker",
+      type: "DevOps",
+      proficiency: 2
+    },
+    {
+      name: "PyTorch",
+      type: "Machine Learning",
+      proficiency: 5
+    },
+    {
+      name: "Scipy",
+      type: "Machine Learning",
+      proficiency: 5
+    },
+    {
+      name: "AWS",
+      type: "Cloud Computing",
+      proficiency: 5
+    },
+  ]
+
+  export const myStrengths = [
+    {
+      name: "Adaptability",
+      desc: "I am able to quickly adapt to new environments and technologies, and I am always eager to learn new things.",
+      proficiency: 5
+    },
+    {
+      name: "Problem Solving Skills",
+      desc: "I have strong analytic and problem-solving skills, which allow me to tackle complex issues effectively.",
+      proficiency: 4
+    },
+    {
+      name: "Resilience",
+      desc: "I am resilient and persistent, and I never give up when faced with challenges.",
+      proficiency: 3
+    },
+    {
+      name: "Leadership and Teamwork",
+      desc: "I am a natural leader and a team player, and I am able to work effectively in a team environment.",
+      proficiency: 2
+    }
+  ]
   
   export const myProjects = [
     {
