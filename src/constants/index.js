@@ -26,17 +26,22 @@ export const navLinks = [
     },
     {
       id: 6,
+      name: 'Awards',
+      href: '#awards',
+    },
+    {
+      id: 7,
       name: 'Skills',
       href: '#skills',
     },
     {
-      id: 7,
+      id: 8,
       name: 'Work',
       href: '#work',
     },
 
     {
-      id: 8,
+      id: 9,
       name: 'Contact',
       href: '#contact',
     },
