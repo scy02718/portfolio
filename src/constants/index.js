@@ -454,6 +454,37 @@ export const navLinks = [
       overview: "Graduated with perfect Rank Score of 320 / 320 from Westlake Boys High School. Developed strong teamwork, leadership, and problem-solving skills through various extracurricular activities and academic competitions. Received Outstanding Schoalr Award, as well as Top student in Mathematics and Physics.",
     },
   ]
+
+  export const myAwards = [
+    {
+      title: 'Industry Award for Best Part IV Project',
+      provider: 'University of Auckland, CSL (Cuthbert Stewart Limited)',
+      year: '2024',
+      desc: 'Annual award presented to the top student for the best Part IV project in Engineering for Robotics category . The award recognizes the student who has demonstrated exceptional technical skills, creativity, and innovation in their project.',
+      reward: 'NZD $500',
+    },
+    {
+      title: '3rd Place - Velocity $100K Challenge',
+      provider: 'University of Auckland, Velocity Innovation Hub',
+      year: '2024',
+      desc: 'Awarded 3rd place in the prestigious Velocity $100K Challenge, a startup competition that recognizes the most innovative and promising business ideas. The award acknowledges the potential of the business idea and its impact on the market.',
+      reward: 'NZD $15,000',
+    },
+    {
+      title: "Dean's Honours List",
+      provider: 'University of Auckland',
+      year: '2021, 2022, 2023, 2024',
+      desc: "Recognized for outstanding academic achievement by being placed on the Dean's Honours List for four consecutive years. The award acknowledges the student's exceptional academic performance and dedication to their studies, achieving top 5% in the faculty.",
+      reward: 'Certificate of Achievement',  
+    },
+    {
+      title: "Outstanding Scholar Award",
+      provider: "NZQA",
+      year: "2020",
+      desc: "Awarded the Outstanding Scholar Award by the New Zealand Qualifications Authority for achieving exceptionally in NZQA Scholarship Exam, placing in top 30 students in the country. The award recognizes the student's exceptional academic performance and dedication to their studies.",
+      reward: "NZD $15,000",
+    },
+  ]
   
   export const workExperiences = [
     {
