@@ -143,7 +143,7 @@ const Hero = () => {
                 <a href="#about" className='w-fit'>
                     {/* isBeam is a prop that makes the button have a beam effect */}
                     {/* containerClass is a prop that is used to style the button, input to the component*/}
-                    <Button name="Let's work together" isBeam containerClass="sm:w-fit w-full sm:min-w-96"/>
+                    <Button name="View my Resume" isBeam containerClass="sm:w-fit w-full sm:min-w-96"/>
                 </a>
             </div>
         </section>

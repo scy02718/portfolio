@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion
 import { myAwards } from '../constants/index.js';
 
 const Awards = () => {
@@ -43,7 +42,7 @@ const Awards = () => {
               <div className='flex gap-2 mt-3 justify-start items-center'>
                 <p>Received: </p>
                 <p className="text-white-700">{currentAward.reward}</p>
-              </div>
+              </div>  
           </div>
 
           <div className="flex justify-between items-center mt-7 w-full">
