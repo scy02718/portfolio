@@ -15,7 +15,7 @@ const Education = () => {
                 <div className='education-container'>
                     {educations.map(({id, provider, degree, duration, logo, gpa, transcript, skills, overview }) => (
                         <div key={id} className='education-content_container'>
-                            <div className='flex justify-between'>
+                            <div className='flex justify-between lg:flex-row flex-col gap-10'>
                                 <div className='flex gap-10 justify-start items-center'>
                                     <div className='flex flex-col h-full justify-start items-center py-2'>
                                         <div className='education-content_logo'>
@@ -29,7 +29,7 @@ const Education = () => {
                                     </div>
                                 </div>
 
-                                <div className='flex flex-col justify-start items-end gap-2'>
+                                <div className='flex lg:flex-col flex-row justify-start items-end gap-2'>
                                     {skills.map((skill, index) => (
                                         <div className='bg-black-300 border border-black-300 rounded-lg px-3 py-1'>
                                             <p key={index} className='text-xs'>

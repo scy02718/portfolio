@@ -42,7 +42,7 @@ const Skills = () => {
                     {alphabetical: (a, b) => a.name.localeCompare(b.name), proficiency: (a, b) => b.proficiency - a.proficiency}[filterBy]
                 ).map(({name, type, proficiency}, index) => (
                     <div className='bg-black-300 rounded-lg p-5 hover:bg-black-500 transition-all ease-in-out duration-100'>
-                      <div className='flex justify-between'>
+                      <div className='flex justify-between overflow-auto'>
                           <p className='text-xl font-bold'>{name}</p>
                           <p className='text-lg'>{proficiency}⭐</p>
                       </div>
