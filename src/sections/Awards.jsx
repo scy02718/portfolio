@@ -29,36 +29,21 @@ const Awards = () => {
       <div className="w-full text-white-600">
         <h3 className="head-text">Awards</h3>
         <div className="p-10 shadow-2xl shadow-black-200 bg-black-200 border-2 border-black-300 rounded-lg mt-10 w-full overflow-hidden">
-          {/* Fixed height container to avoid height changes */}
-          <div className="relative h-40"> 
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={selectedAwardIndex} // Unique key for each award
-                custom={direction}
-                initial={{ x: direction > 0 ? 300 : -300, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: direction > 0 ? -300 : 300, opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute top-0 left-0 w-full"
-              >
-                <div className="flex flex-col gap-2 text-white-600 items-start">
-                  <p className="animatedText">{currentAward.provider}</p>
-                  <div className='flex items-center gap-3'>
-                    <p className="text-2xl font-bold text-white animatedText">{currentAward.title}</p>
-                    <div className="px-2 rounded-xl bg-black-300">
-                      <p>{currentAward.year}</p>
-                    </div>
-                  </div>
-
-                  <p className="animatedText">{currentAward.desc}</p>
-
-                  <div className='flex gap-2 mt-3 justify-start items-center'>
-                    <p>Received: </p>
-                    <p className="text-white-700">{currentAward.reward}</p>
-                  </div>
+            <div className="flex flex-col gap-2 text-white-600 items-start">
+              <p className="animatedText">{currentAward.provider}</p>
+              <div className='flex items-center gap-3'>
+                <p className="text-2xl font-bold text-white animatedText">{currentAward.title}</p>
+                <div className="px-2 rounded-xl bg-black-300">
+                  <p>{currentAward.year}</p>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+
+              <p className="animatedText">{currentAward.desc}</p>
+
+              <div className='flex gap-2 mt-3 justify-start items-center'>
+                <p>Received: </p>
+                <p className="text-white-700">{currentAward.reward}</p>
+              </div>
           </div>
 
           <div className="flex justify-between items-center mt-7 w-full">
