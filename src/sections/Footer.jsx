@@ -16,7 +16,7 @@ const Footer = () => {
                     </a>
                 </div>
                 <div className='social-icon'>
-                    <a href="linkedin.com/in/chanyoo/" target='_blank' rel='noreferrer' className='cursor-pointer flex justify-center items-center'>
+                    <a href="https://linkedin.com/in/chanyoo/" target='_blank' rel='noreferrer' className='cursor-pointer flex justify-center items-center'>
                         <img src="/assets/linkedin.svg" alt="linkedin" className='w-1/2 h-1/2'/>
                     </a>
                 </div>
