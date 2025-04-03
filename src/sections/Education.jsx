@@ -44,13 +44,6 @@ const Education = () => {
                                 {overview}
                             </p>
 
-                            {transcript && 
-                                <button className='w-full mt-10 bg-black-300 rounded-lg p-3 font-bold flex items-center justify-center transition-all ease-in-out duration-500 cursor-pointer hover:bg-black-500 '
-                                    onClick={openTranscript(transcript)}>
-                                    View Transcript
-                                    <img src="/assets/right-arrow.png" alt="arrow" className='w-3 h-3 ml-2' />
-                                </button>}
-
                             <hr className='border border-black-300 mt-10' />
                         </div>
                     ))}

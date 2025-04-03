@@ -39,16 +39,18 @@ const About = () => {
                         {/*w-full means the width is full, sm:h-[276px] = Height is 276px on small screens, h-fit = Height is fit to the content, object-contain = The image will not be stretched */}
                         <img src="/assets/grid1.png" alt="grid-1" className='w-full sm:h-[276px] h-fit object-contain' />
                         <p className='grid-headtext'>Hi, I'm Samuel!</p>
-                        <p className='grid-subtext'>I am a recent graduate from the University of Auckland, with a Bachelor of Engineering in Software Engineering.</p>
+                        <p className='grid-subtext'>I am a Software Development Engineer at AWS, with a Software Engineering Degree from the University of Auckland</p>
                     </div>
                 </div>
                 <div className='col-span-1 xl:row-span-3'>
                     <div className='grid-container'>
-                        <img src="assets/grid2.png" alt="grid-2" className='w-full sm:h-[276px] h-fit object-contain' />
+                        <div className='items-center flex justify-center'>
+                            <img src="assets/grid2.webp" alt="grid-2" className='w-1/3 sm:h-[276px] h-fit  object-contain' />
+                        </div>
                         <a href="#skills" className='cursor-pointer'>
                             <p className='grid-headtext'>Tech Stack <span>&#8594;</span></p>
                         </a>
-                        <p className='grid-subtext'>My Tech Stack spans from Full-stack Web Development, Cloud Architecture, to Machine Learning and Deep Learning.</p>
+                        <p className='grid-subtext'>My Tech Stack spans from Full-stack Web Development, Cloud Architecture, to Machine Learning.</p>
                     </div>
                 </div>
 
@@ -80,8 +82,9 @@ const About = () => {
                         <div>
                             <p className='grid-headtext'>Location</p>
                             <p className='grid-subtext'>I am currently based in Auckland, New Zealand.</p>
-
-                            <Button name="Contact Me" isBeam containerClass='w-full mt-10' />
+                            <a href="#contact" className='cursor-pointer'>
+                                <Button name="Contact Me" isBeam containerClass='w-full mt-10' />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +93,7 @@ const About = () => {
                         <img src="/assets/grid3.png" alt="grid-3" className='w-full sm:h-[266px] h-fit object-contain' />
                         <div>
                             <p className='grid-headtext'>Profile Summary</p>
-                            <p className='grid-subtext'>As a recent graduate in Software Engineering from the University of Auckland with an outstanding GPA of 8.55 out of 9, I bring a strong ability to tackle complex challenges and an eagerness to learn. I have always tried to use my technical expertise to make products that help people in society. Equipped with 3 AWS Certifications and a strong background in Software Development principles and practices, I am eager to make an impactful contribution as a Software Enginner</p>
+                            <p className='grid-subtext'>As a recent graduate in Software Engineering from the University of Auckland with an outstanding GPA of 8.55 out of 9, I bring a strong ability to tackle complex challenges and an eagerness to learn. I have always tried to use my technical expertise to make products that help people in society. Equipped with 3 AWS Certifications and a strong background in Software Development principles and practices, I am eager to make an impactful contribution as a Software Development Enginner at AWS</p>
                         </div>
                     </div>
                 </div>

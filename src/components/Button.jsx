@@ -4,7 +4,7 @@ const Button = ({ name, isBeam = false, containerClass }) => {
     // When isBeam is true, we can render a <span> element
     // This span element will contain two child elements, used for the beam effect
     return (
-        <button className={`btn ${containerClass} hover:bg-black-500 transition-all ease-in-out duration-500`} onClick={() => window.open('/assets/resume.pdf', '_blank', 'noreferrer')}>
+        <button className={`btn ${containerClass} hover:bg-black-500 transition-all ease-in-out duration-500`}>
             {isBeam && (
                 <span className='relative flex h-3 w-3'>
                     <span className='btn-ping' />

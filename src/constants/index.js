@@ -226,7 +226,75 @@ export const navLinks = [
       proficiency: 2
     }
   ]
+
+  export const myProjects = [
+    {
+      title: 'Part IV Project',
+      desc: 'University of Auckland Part IV Project, named as Dynamic Facial Expression Generation for Head Robots with Adaptive Style Control. Researched on creating Facial Robot software that is capable of Empathetic Talking and Facial Mimicking',
+      subdesc:
+        'Built Software that utilised DeepFace, EmoTalk and Large Language Models, as well as Mapping Function trained using Regularised Gradient Descent, allowing robot to talk empathetically and mimick facial expressions.',
+      href: '/assets/final-report.pdf',
+      texture: '/textures/project/part-iv.mp4',
+      logo: '/assets/project-logo2.png',
+      logoStyle: {
+        backgroundColor: '#13202F',
+        border: '0.2px solid #17293E',
+        boxShadow: '0px 0px 60px 0px #2F6DB54D',
+      },
+      spotlight: '/assets/spotlight2.png',
+      tags: [
+        {
+          id: 1,
+          name: 'Python',
+          path: '/assets/python.png',
+        },
+        {
+          id: 2,
+          name: 'TailwindCSS',
+          path: 'assets/pytorch.png',
+        },
+        {
+          id: 3,
+          name: 'Appwrite',
+          path: '/assets/opencv.png',
+        }
+      ],
+    },
+    {
+      title: 'Movves - Movie Search App',
+      desc: 'Movves is a simple movie search app where user can search for movies, and displays the most commonly searched movies. It uses the TMDB API to fetch movie data and display it in a modern way, as well as use appwrite for storing user search results.',
+      subdesc:
+        'Build as an interactive, responsive web app with React.js, Tailwind CSS and Appwrite, it shows best practices for React Web development, such as state management, search debouncing and more.',
+      href: 'https://movves.netlify.app/',
+      texture: '/textures/project/movves.mp4',
+      logo: '/assets/logo-movves.png',
+      logoStyle: {
+        backgroundColor: '#2A1816',
+        border: '0.2px solid #36201D',
+        boxShadow: '0px 0px 60px 0px #AA3C304D',
+      },
+      spotlight: '/assets/spotlight1.png',
+      tags: [
+        {
+          id: 1,
+          name: 'React.js',
+          path: '/assets/react.svg',
+        },
+        {
+          id: 2,
+          name: 'TailwindCSS',
+          path: 'assets/tailwindcss.png',
+        },
+        {
+          id: 3,
+          name: 'Appwrite',
+          path: '/assets/appwrite.png',
+        }
+      ],
+    }
+  ]
   
+  /*
   export const myProjects = [
     {
       title: 'Podcastr - AI Podcast Platform',
@@ -416,6 +484,7 @@ export const navLinks = [
       ],
     },
   ];
+  */
   
   export const calculateSizes = (isSmall, isMobile, isTablet) => {
     return {
@@ -494,24 +563,33 @@ export const navLinks = [
   export const workExperiences = [
     {
       id: 1,
-      name: 'Health Initiatives',
+      name: 'Amazon Web Services (AWS)',
+      pos: 'Software Development Engineer',
+      duration: '2025 - Present',
+      title: "Amazon Web Services (AWS) is a global leader of cloud computing platforms. It provides Cloud solutions to individuals, companies, and governments. As a Software Development Engineer, I am responsible for designing and implementing scalable and reliable software solutions that meet the needs of our customers.",
+      icon: '/assets/amazon-web-services.png',
+      animation: 'salute',
+    },
+    {
+      id: 2,
+      name: 'Align HealthTech Limited',
       pos: 'Founding Member / Tech Lead',
       duration: '2024 - Present',
-      title: "Health Initiatives is an AI-SaaS platform that enhances consultation efficiencies for Healthcare Providers. It leverages AI to automate patient data collection, enabling doctors to focus on the essentials. I'm responsible for the platform's architecture, development, and deployment.",
+      title: "Align HealthTech Limited is an AI-SaaS platform that enhances consultation efficiencies for Healthcare Providers. It leverages AI to automate patient data collection, enabling doctors to focus on the essentials. I'm responsible for the platform's architecture, development, and deployment.",
       icon: '/assets/health-initiatives.png',
       animation: 'victory',
     },
     {
-      id: 2,
+      id: 3,
       name: 'Resideo NZ',
       pos: 'Machine Learning Intern',
       duration: '2023 - 2024',
-      title: "Resideo is a leading provier for home comfort and security solutions. As a Machine Learning Intern, I developed object detection models for smart home devices, addressing common security risks such as Housefire and Falls.",
+      title: "Resideo is a leading provider for home comfort and security solutions. As a Machine Learning Intern, I developed object detection models for smart home devices, addressing common security risks such as Housefire and Falls.",
       icon: '/assets/resideo.png',
       animation: 'clapping',
     },
     {
-      id: 3,
+      id: 4,
       name: 'University of Auckland',
       pos: 'AI Research Assistant',
       duration: '2023',
