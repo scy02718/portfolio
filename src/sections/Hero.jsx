@@ -82,8 +82,7 @@ const Hero = () => {
                 {/* font-medium = Font weight is medium, text-white = Text color is white */}
                 {/* text-center = Text is centered, font-generalsans = Font is generalsans */}
                 <p className='sm:text-3xl text-2xl font-medium text-white text-center font-generalsans'>Hi, I am Samuel<span className='waving-hand'>👋</span></p>
-                <p className='hero_tag text-gray_gradient'>Software Development Engineer</p>
-                <p className='text-gray-400 text-center sm:text-lg text-sm font-light'>at Amazon Web Services (AWS)</p>
+                <p className='hero_tag text-gray_gradient'>Software Engineer</p>
             </div>
 
             {/* absolute + inset-0 makes sure the element takes the rest of the space below the texts */}
