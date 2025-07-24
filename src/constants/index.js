@@ -95,6 +95,16 @@ export const navLinks = [
     },
     {
       provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified Developer - Associate',
+      date: '24th June, 2025 - 24th June, 2028',
+      score: '0.781',
+      desc: 'AWS Certified Developer - Associate showcases skills and knowledge in developing, optimizing, packaging, and deploying applications, using CI/CD workflows, and identifying and resolving application issues. This certification is a good starting point on the AWS Certification journey for individuals in IT or cloud developer job roles.',
+      logo: 'assets/certificates/aws-certified-developer.png',
+      link: 'https://www.credly.com/earner/earned/badge/45076768-0194-468d-a5b5-b5a038033538',
+      cert: 'assets/certificates/aws-certified-developer-cert.pdf',
+    },
+    {
+      provider: 'Amazon Web Services (AWS)',
       name: 'AWS Certified Machine Learning Engineer - Associate',
       date: '7th January, 2025 - 7th January, 2028',
       score: '0.901',
@@ -102,6 +112,16 @@ export const navLinks = [
       logo: 'assets/certificates/aws-machine-learning.png',
       link: 'https://www.credly.com/badges/651bc42b-9722-4edd-aa7f-80af3efcaaac',
       cert: 'assets/certificates/aws-machine-learning-cert.pdf',
+    },
+    {
+      provider: 'Amazon Web Services (AWS)',
+      name: 'AWS Certified Cloud Practitioner',
+      date: '22nd May, 2025 - 22nd May, 2028',
+      score: '0.753',
+      desc: 'The AWS Certified Cloud Practitioner validates foundational, high-level understanding of AWS Cloud, services, and terminology.  This is a good starting point on the AWS Certification journey for individuals with no prior IT or cloud experience switching to a cloud career or for line-of-business employees looking for foundational cloud literacy.',
+      logo: 'assets/certificates/aws-certified-cloud-practitioner.png',
+      link: 'https://www.credly.com/earner/earned/badge/da9e8f76-899b-4508-bb2e-4bd9c70e4fa3',
+      cert: 'assets/certificates/aws-certified-cloud-practitioner-cert.pdf',
     },
     {
       provider: 'Amazon Web Services (AWS)',
