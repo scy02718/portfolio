@@ -81,8 +81,10 @@ const Hero = () => {
                 {/* sm:text-3xl = Text size is 3xl on small screens, text-2xl = Text size is 2xl */}
                 {/* font-medium = Font weight is medium, text-white = Text color is white */}
                 {/* text-center = Text is centered, font-generalsans = Font is generalsans */}
-                <p className='sm:text-3xl text-2xl font-medium text-white text-center font-generalsans'>Hi, I am Samuel<span className='waving-hand'>👋</span></p>
-                <p className='hero_tag text-gray_gradient'>Software Engineer</p>
+                <p className='sm:text-3xl text-2xl font-medium text-neon-bright text-center font-mono'>
+                    <span className='text-green-500/70'>{'> '}</span>whoami: Samuel<span className='waving-hand'>👋</span>
+                </p>
+                <p className='hero_tag text-gray_gradient'>Software_Engineer</p>
             </div>
 
             {/* absolute + inset-0 makes sure the element takes the rest of the space below the texts */}

@@ -70,7 +70,7 @@ const Certificates = () => {
             </div>
             <div className='flex flex-col gap-2 text-white-600 my-5 items-start'>
               <p className='animtedText'>{currentCertificate.provider}</p>
-              <p className='text-2xl font-bold text-white animatedText'>{currentCertificate.name}</p>
+              <p className='text-2xl font-bold text-neon-bright animatedText'>{currentCertificate.name}</p>
 
               <div className='px-4 p-2 w-fit rounded-xl bg-black-300 mt-2'>
                 <p>{currentCertificate.date}</p>

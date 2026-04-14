@@ -49,8 +49,8 @@ const Navbar = ({ onOpenPalette }) => {
                 <div className='flex justify-between items-center py-5 mx-auto c-space'>
                     {/* Text-neutral-400 = Text color is neutral-400, Font-bold = Font weight is bold, Text-xl = Text size is xl */}
                     {/* Hover:text-white = Text color changes to white on hover, Transition-colors = Smooth transition */}
-                    <a href="/" className='text-neutral-400 font-bold text-xl hoverLtext-white transition-colors'>
-                        Samuel
+                    <a href="/" className='text-neon-bright font-bold text-xl font-mono hover:text-neon-glow transition-colors'>
+                        ~/samuel
                     </a>
 
                     {/* Command palette trigger pill — discoverable entry point for the ⌘K overlay */}
@@ -67,7 +67,7 @@ const Navbar = ({ onOpenPalette }) => {
                     {/* focus:outline-none = Removes the outline when the button is focused */}
                     {/* Sm:hidden = Hidden on small screens, Flex = Flexbox, meaning the children will be in a row */}
                     {/* aria-label = Accessibility label, meaning it will be read by the screen reader */}
-                    <button onClick={toggleMenu} className='text-neutral-400 hover:text-white focus:outline-none sm:hidden flex' aria-label='Toggle Menu'>
+                    <button onClick={toggleMenu} className='text-green-300/70 hover:text-neon-bright focus:outline-none sm:hidden flex' aria-label='Toggle Menu'>
                         {/* If isOpen is true, then show close.svg, else show menu.svg */}
                         {/* W-6 = Width is 6, H-6 = Height is 6 */}
                         <img src={isOpen ? "assets/close.svg" : "assets/menu.svg"} alt="Toggle" className='w-6 h-6' />

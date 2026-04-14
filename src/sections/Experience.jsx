@@ -92,7 +92,7 @@ const Experience = () => {
                                         {/* group-hover is executed when any of the elements inside the GROUP, which is the parent div, is hovered */}
                                         {/* Hence if any of them are hovered, the text will change to white */}
                                         {/* transition ease-in-out duration-500 will make the text change color smoothly */}
-                                        <p className='group-hover:text-white transition ease-in-out duration-500'>{title}</p>
+                                        <p className='group-hover:text-neon-bright transition ease-in-out duration-500'>{title}</p>
                                     </div>
                                 </div>
                             ))}

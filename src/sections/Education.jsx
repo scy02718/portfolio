@@ -25,7 +25,7 @@ const Education = () => {
                                     <div>
                                         <p className='education-text_provider'>{provider}</p>
                                         <p className='education-text_major'>{degree} -- {duration}</p>
-                                        <p className='mt-2 text-2xl group-hover:text-white transition ease-in-out duration-500'>{gpa}</p>
+                                        <p className='mt-2 text-2xl group-hover:text-neon-bright transition ease-in-out duration-500'>{gpa}</p>
                                     </div>
                                 </div>
 

@@ -4,27 +4,39 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        generalsans: ['General Sans', 'sans-serif'],
+        generalsans: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       colors: {
         black: {
           DEFAULT: '#000',
-          100: '#010103',
-          200: '#0E0E10',
-          300: '#1C1C21',
-          500: '#3A3A49',
-          600: '#1A1A1A',
+          100: '#000308',
+          200: '#04080a',
+          300: '#0a1a10',
+          500: '#13301a',
+          600: '#061206',
         },
         white: {
-          DEFAULT: '#FFFFFF',
-          800: '#E4E4E6',
-          700: '#D6D9E9',
-          600: '#AFB0B6',
-          500: '#62646C',
+          DEFAULT: '#e8ffe8',
+          800: '#d4f5d4',
+          700: '#b8e6b8',
+          600: '#7ea87e',
+          500: '#4a6b4a',
+        },
+        neon: {
+          DEFAULT: '#22c55e',
+          dim: '#16a34a',
+          bright: '#4ade80',
+          glow: '#86efac',
         },
       },
       backgroundImage: {
         terminal: "url('/assets/terminal.png')",
+      },
+      boxShadow: {
+        'neon-sm': '0 0 12px rgba(34,197,94,0.15)',
+        'neon': '0 0 24px rgba(34,197,94,0.22)',
+        'neon-lg': '0 0 40px rgba(34,197,94,0.3)',
       },
     },
   },

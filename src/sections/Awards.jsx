@@ -31,7 +31,7 @@ const Awards = () => {
             <div className="flex flex-col gap-2 text-white-600 items-start">
               <p className="animatedText">{currentAward.provider}</p>
               <div className='flex items-center gap-3'>
-                <p className="text-2xl font-bold text-white animatedText">{currentAward.title}</p>
+                <p className="text-2xl font-bold text-neon-bright animatedText">{currentAward.title}</p>
                 <div className="px-2 rounded-xl bg-black-300">
                   <p>{currentAward.year}</p>
                 </div>
