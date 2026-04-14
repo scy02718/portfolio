@@ -24,9 +24,10 @@ const NavItems = () => {
     )
 }
 
-const Navbar = () => {
+const Navbar = ({ onOpenPalette }) => {
     // useState is used to manage the state of the menu
     const [isOpen, setIsOpen] = useState(false)
+    const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/i.test(navigator.platform)
 
     // Function to toggle the menu
     // You can use setIsOpen(!isOpen) as well, but this method is more reliable
@@ -51,6 +52,17 @@ const Navbar = () => {
                     <a href="/" className='text-neutral-400 font-bold text-xl hoverLtext-white transition-colors'>
                         Samuel
                     </a>
+
+                    {/* Command palette trigger pill — discoverable entry point for the ⌘K overlay */}
+                    <button
+                        onClick={onOpenPalette}
+                        aria-label='Open command palette'
+                        className='hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md border border-green-500/30 bg-black/40 text-green-300/80 hover:text-green-200 hover:border-green-400/60 transition-colors font-mono text-xs'
+                    >
+                        <span className='text-green-500/70'>{'>'}</span>
+                        <span>command</span>
+                        <kbd className='ml-1 px-1.5 py-0.5 rounded border border-green-500/30 text-[10px] text-green-400/80'>{isMac ? '⌘' : 'Ctrl'} K</kbd>
+                    </button>
 
                     {/* focus:outline-none = Removes the outline when the button is focused */}
                     {/* Sm:hidden = Hidden on small screens, Flex = Flexbox, meaning the children will be in a row */}
