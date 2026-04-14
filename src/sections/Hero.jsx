@@ -12,6 +12,7 @@ import Rings from '../components/Rings.jsx'
 import HeroCamera from '../components/HeroCamera.jsx'
 import Button from '../components/Button.jsx'
 import RoomLights from '../components/RoomLights.jsx'
+// floating widgets (ReactLogo, Cube, Rings) removed — they didn't fit the terminal vibe
 
 const Hero = () => {
     // useControls is a hook that is used to create controls for the model
@@ -114,14 +115,6 @@ const Hero = () => {
                                 scale={sizes.deskScale}
                             />
                         </HeroCamera>
-
-                        {/* Inside the group are custom component for floating elemtents */}
-                        {/* Again, within Canvas we cannot have <div> tags */}
-                        <group>
-                            <ReactLogo position={sizes.reactLogoPosition}/>
-                            <Cube position={sizes.cubePosition}/>
-                            <Rings position={sizes.ringPosition}/>
-                        </group>
 
                         {/* Dynamic room lighting — pulsing CRT glow + cursor-tracking rim spotlight */}
                         <RoomLights />

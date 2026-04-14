@@ -48,7 +48,7 @@ const Certificates = () => {
   const openDownload = (cert) => () => window.open(cert, '_blank', 'noreferrer')
 
   return (
-    <section id='certificates' className='c-space my-20'>
+    <section id='certificates' className='c-space my-4'>
       <div className='w-full text-white-600'>
         <h3 className='head-text'>My Certificates</h3>
         <div className='grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full'>

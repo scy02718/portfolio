@@ -24,7 +24,7 @@ const Awards = () => {
   };
 
   return (
-    <section id="awards" className="c-space my-20">
+    <section id="awards" className="c-space my-4">
       <div className="w-full text-white-600">
         <h3 className="head-text">Awards</h3>
         <div className="p-10 shadow-2xl shadow-black-200 bg-black-200 border-2 border-black-300 rounded-lg mt-10 w-full overflow-hidden">

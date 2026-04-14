@@ -25,7 +25,7 @@ const Experience = () => {
         // This section will have an id of experience
         // It will have a class of c-space which will add padding to the top and bottom
         // It will also have a margin of 20
-        <section id='experience' className='c-space my-20'>
+        <section id='experience' className='c-space my-4'>
             {/* This div will be the container for the section */}
             {/* It will fill up the entire width of the screen, and all texts will be white */}
             <div className='w-full text-white-600'>

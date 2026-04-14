@@ -13,6 +13,7 @@ import Awards from './sections/Awards'
 import CommandPalette from './components/CommandPalette'
 import BootSequence from './components/BootSequence'
 import TerminalHUD, { sectionOrder } from './components/TerminalHUD'
+import TerminalWindow from './components/TerminalWindow'
 
 const App = () => {
   const [paletteOpen, setPaletteOpen] = useState(false)
@@ -106,14 +107,14 @@ const App = () => {
       <main className='max-w-7xl mx-auto'>
         <Navbar onOpenPalette={() => setPaletteOpen(true)} />
         <Hero />
-        <About />
-        <Education />
-        <Experience />
-        <Certificates />
-        <Awards />
-        <Skills />
+        <TerminalWindow title='~/about' app='cat profile.md'><About /></TerminalWindow>
+        <TerminalWindow title='~/education' app='ls -la'><Education /></TerminalWindow>
+        <TerminalWindow title='~/experience' app='git log'><Experience /></TerminalWindow>
+        <TerminalWindow title='~/certificates' app='cat *.cert'><Certificates /></TerminalWindow>
+        <TerminalWindow title='~/awards' app='ls trophies/'><Awards /></TerminalWindow>
+        <TerminalWindow title='~/skills' app='cat skills.json'><Skills /></TerminalWindow>
         {/*<Projects />*/}
-        <Contact />
+        <TerminalWindow title='~/contact' app='mail'><Contact /></TerminalWindow>
         <Footer />
         <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
       </main>

@@ -9,7 +9,7 @@ const Skills = () => {
   };
 
   return (
-    <section id='skills' className='c-space my-20'>
+    <section id='skills' className='c-space my-4'>
         <div className='w-full text-white-600'>
           <div className='flex justify-between'>
             <h3 className='head-text'>My Skills</h3>
@@ -44,7 +44,6 @@ const Skills = () => {
                     <div className='bg-black-300 rounded-lg p-5 hover:bg-black-500 transition-all ease-in-out duration-100'>
                       <div className='flex justify-between overflow-auto'>
                           <p className='text-xl font-bold'>{name}</p>
-                          <p className='text-lg'>{proficiency}⭐</p>
                       </div>
                       <div className='flex justify-between'>
                           <p className='text-sm'>{type}</p>

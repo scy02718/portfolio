@@ -87,12 +87,8 @@ const Contact = () => {
     return (
         // c-space is a custom class that adds padding to the top and bottom of the section, my-20 adds margin to the top and bottom
         // The id of contact allows any link with href="#contact" to scroll to this section
-        <section className='c-space my-20' id="contact">
-            {/* Relative means the element is positioned relative to its normal position */}
-            {/* min-h-screen makes sure the section is at least the height of the screen */}
-            {/* flex + items-center + justify-center + flex-col makes sure the children are in a column and centered */}
-            {/* To be specific, items-center centers the children horizontally, and justify-center centers the children vertically */}
-            <div className='relative min-h-screen flex items-center justify-center flex-col'>
+        <section className='c-space my-4' id="contact">
+            <div className='relative flex items-center justify-center flex-col'>
                 {/* The terminal background */}
                 {/* absolute means the element is positioned relative to the nearest positioned ancestor */}
                 {/* inset-0 means the element is positioned at the top, right, bottom, and left */}

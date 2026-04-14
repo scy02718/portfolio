@@ -9,7 +9,7 @@ const Education = () => {
         }
     }
     return (
-        <section id='education' className='c-space my-20'>
+        <section id='education' className='c-space my-4'>
             <div className='w-full text-white-600'>
                 <h3 className='head-text'>My Education</h3>
                 <div className='education-container'>
