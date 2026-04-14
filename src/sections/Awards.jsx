@@ -1,93 +1,49 @@
-import React, { useState } from 'react';
-import { myAwards } from '../constants/index.js';
+import React, { useState } from 'react'
+import { myAwards } from '../constants/index.js'
+import Decoder from '../components/Decoder'
 
 const Awards = () => {
-  const [selectedAwardIndex, setSelectedAwardIndex] = useState(0);
-  const [direction, setDirection] = useState(0); // Tracks animation direction (-1 or 1)
-  const currentAward = myAwards[selectedAwardIndex];
-  const numAwards = myAwards.length;
+    const [idx, setIdx] = useState(0)
+    const total = myAwards.length
+    const award = myAwards[idx]
 
-  const handleNavigation = (direction) => {
-    setDirection(direction === 'previous' ? -1 : 1); // Set direction
-    setSelectedAwardIndex((prevIndex) => {
-      if (direction === 'previous') {
-        return prevIndex === 0 ? numAwards - 1 : prevIndex - 1;
-      } else {
-        return prevIndex === numAwards - 1 ? 0 : prevIndex + 1;
-      }
-    });
-  };
+    const next = () => setIdx((i) => (i + 1) % total)
+    const prev = () => setIdx((i) => (i - 1 + total) % total)
 
-  const handleNavigationWithIndex = (index) => {
-    setDirection(index > selectedAwardIndex ? 1 : -1); // Determine animation direction
-    setSelectedAwardIndex(index);
-  };
+    return (
+        <section id='awards' className='c-space my-4'>
+            <h3 className='head-text'>
+                <Decoder text='Awards' />
+            </h3>
 
-  return (
-    <section id="awards" className="c-space my-4">
-      <div className="w-full text-white-600">
-        <h3 className="head-text">Awards</h3>
-        <div className="p-10 shadow-2xl shadow-black-200 bg-black-200 border-2 border-black-300 rounded-lg mt-10 w-full overflow-hidden">
-            <div className="flex flex-col gap-2 text-white-600 items-start">
-              <p className="animatedText">{currentAward.provider}</p>
-              <div className='flex items-center gap-3'>
-                <p className="text-2xl font-bold text-neon-bright animatedText">{currentAward.title}</p>
-                <div className="px-2 rounded-xl bg-black-300">
-                  <p>{currentAward.year}</p>
+            <div className='mt-4 font-mono text-xs'>
+                <div className='flex items-center justify-between mb-2 text-green-300/70'>
+                    <button onClick={prev} className='px-2 py-0.5 border border-green-500/30 rounded hover:border-neon-bright hover:text-neon-bright transition-colors'>
+                        ← prev
+                    </button>
+                    <span className='text-green-500/60'>
+                        [{idx + 1}/{total}]
+                    </span>
+                    <button onClick={next} className='px-2 py-0.5 border border-green-500/30 rounded hover:border-neon-bright hover:text-neon-bright transition-colors'>
+                        next →
+                    </button>
                 </div>
-              </div>
 
-              <p className="animatedText">{currentAward.desc}</p>
-
-              <div className='flex gap-2 mt-3 justify-start items-center'>
-                <p>Received: </p>
-                <p className="text-white-700">{currentAward.reward}</p>
-              </div>  
-          </div>
-
-          <div className="flex justify-between items-center mt-7 w-full">
-            <button
-              className="arrow-btn"
-              onClick={() => handleNavigation('previous')}
-            >
-              <img
-                src="/assets/left-arrow.png"
-                alt="left-arrow"
-                className="w-4 h-4"
-              />
-            </button>
-
-            <div className="flex items-center gap-3">
-              {Array.from({ length: numAwards }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => handleNavigationWithIndex(i)}
-                  className="focus:outline-none"
-                >
-                  {selectedAwardIndex === i ? (
-                    <div className="bg-white-500 w-2 h-2 rounded-full"></div>
-                  ) : (
-                    <div className="bg-white w-2 h-2 rounded-full"></div>
-                  )}
-                </button>
-              ))}
+                <div className='border border-green-500/30 bg-black/60 rounded-md p-3 shadow-neon-sm'>
+                    <div className='flex items-baseline gap-2 flex-wrap'>
+                        <span className='text-green-500/60'>$</span>
+                        <span className='text-green-200/80'>{award.provider}</span>
+                        <span className='text-green-500/40 ml-auto'>{award.year}</span>
+                    </div>
+                    <p className='pl-4 mt-1 text-neon-bright font-semibold'>{award.title}</p>
+                    <p className='pl-4 mt-2 text-green-200/70 leading-relaxed'>{award.desc}</p>
+                    <p className='pl-4 mt-2 text-green-200/80'>
+                        received: <span className='text-neon-bright'>{award.reward}</span>
+                    </p>
+                </div>
             </div>
+        </section>
+    )
+}
 
-            <button
-              className="arrow-btn"
-              onClick={() => handleNavigation('next')}
-            >
-              <img
-                src="/assets/right-arrow.png"
-                alt="right-arrow"
-                className="w-4 h-4"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Awards;
+export default Awards

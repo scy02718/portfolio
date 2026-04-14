@@ -1,59 +1,62 @@
 import React, { useState } from 'react'
 import { mySkills, myStrengths } from '../constants/index.js'
+import Decoder from '../components/Decoder'
 
 const Skills = () => {
-  const [filterBy, setFilterBy] = useState('alphabetical');
+    const [filterBy, setFilterBy] = useState('alphabetical')
 
-  const toggleFilter = () => {
-    setFilterBy(filterBy === 'alphabetical' ? 'proficiency' : 'alphabetical');
-  };
+    const toggleFilter = () => {
+        setFilterBy(filterBy === 'alphabetical' ? 'proficiency' : 'alphabetical')
+    }
 
-  return (
-    <section id='skills' className='c-space my-4'>
-        <div className='w-full text-white-600'>
-          <div className='flex justify-between'>
-            <h3 className='head-text'>My Skills</h3>
-            <button onClick={toggleFilter} className='bg-black-300 rounded-lg p-3 font-bold flex items-center justify-center transition-all ease-in-out duration-500 cursor-pointer hover:bg-black-500'>
-              {filterBy === 'alphabetical' ? 'Sort by Proficiency' : 'Sort Alphabetically'}
-            </button>
-          </div>
-          <div className='mt=10'>
-            <div className='sm:py-10 py-5 sm:px-5 px-2.5'>
-                {myStrengths.sort(
-                    {alphabetical: (a, b) => a.name.localeCompare(b.name), proficiency: (a, b) => b.proficiency - a.proficiency}[filterBy]
-                ).map(({name, desc}, index) => (
-                    <div key={index} className='work-content_container group'>
-                        <div className='flex flex-col h-full items-center py-2'>
-                            <div className='work-content_logo flex align-center justify-center items-center'>
-                                <p className='font-bold text-xl'>{index + 1}</p>
-                            </div>
-                            <div className='flex-1 w-0.5 mt-4 h-full bg-white group-hover:bg-black-500 group-last:hidden'/>
-                        </div>
-                        <div className='sm:p-5 px-2.5 py-5'>
-                            <p className='font-bold text-white-800'>{name}</p>
-                            <p className='text-sm-mb-5'>{desc}</p>
-                        </div>
-                    </div>
-                ))}
+    const sorted = [...mySkills].sort(
+        filterBy === 'alphabetical'
+            ? (a, b) => a.name.localeCompare(b.name)
+            : (a, b) => b.proficiency - a.proficiency,
+    )
+
+    return (
+        <section id='skills' className='c-space my-4'>
+            <div className='flex justify-between items-center'>
+                <h3 className='head-text'>
+                    <Decoder text='Skills' />
+                </h3>
+                <button
+                    onClick={toggleFilter}
+                    className='px-2 py-1 text-xs font-mono border border-green-500/30 rounded text-neon-bright hover:border-neon-bright hover:bg-green-500/10 transition-all'
+                >
+                    sort: {filterBy}
+                </button>
             </div>
-        </div>
-          <div className='grid xl:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-5 h-full mt-5'>
-                {mySkills.sort(
-                    {alphabetical: (a, b) => a.name.localeCompare(b.name), proficiency: (a, b) => b.proficiency - a.proficiency}[filterBy]
-                ).map(({name, type, proficiency}, index) => (
-                    <div className='bg-black-300 rounded-lg p-5 hover:bg-black-500 transition-all ease-in-out duration-100'>
-                      <div className='flex justify-between overflow-auto'>
-                          <p className='text-xl font-bold'>{name}</p>
-                      </div>
-                      <div className='flex justify-between'>
-                          <p className='text-sm'>{type}</p>
-                      </div>
-                    </div>
-                ))}
+
+            <div className='mt-4 space-y-3 font-mono text-xs'>
+                <p className='text-green-500/60'>$ ls ./strengths</p>
+                <ul className='pl-3 space-y-1'>
+                    {myStrengths.map(({ name, desc }, i) => (
+                        <li key={i} className='text-green-200/80'>
+                            <span className='text-neon-bright'>{String(i + 1).padStart(2, '0')} </span>
+                            <span className='font-semibold text-neon-bright'>{name}</span>
+                            <span className='text-green-500/50'> — </span>
+                            <span className='text-green-200/70'>{desc}</span>
+                        </li>
+                    ))}
+                </ul>
+
+                <p className='text-green-500/60 mt-4'>$ cat skills.json</p>
+                <div className='grid grid-cols-2 sm:grid-cols-3 gap-1.5 pl-3'>
+                    {sorted.map(({ name, type }, i) => (
+                        <div
+                            key={i}
+                            className='border border-green-500/30 bg-black/60 rounded px-2 py-1 hover:border-neon-bright hover:bg-green-500/5 transition-all'
+                        >
+                            <p className='text-neon-bright font-semibold'>{name}</p>
+                            <p className='text-green-500/60 text-[10px]'>{type}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
-    </section>
-  )
+        </section>
+    )
 }
 
 export default Skills

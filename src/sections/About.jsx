@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Decoder from '../components/Decoder'
 
 const About = () => {
     const [hasCopied, setHasCopied] = useState(false)
@@ -11,7 +12,7 @@ const About = () => {
 
     return (
         <section className='c-space my-4' id='about'>
-            <h3 className='head-text'>About</h3>
+            <h3 className='head-text'><Decoder text='About' /></h3>
             <div className='grid md:grid-cols-3 grid-cols-1 gap-3 mt-4'>
                 <div className='grid-container md:col-span-1'>
                     <p className='grid-headtext'>$ whoami</p>

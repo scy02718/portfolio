@@ -1,54 +1,52 @@
 import React from 'react'
 import { educations } from '../constants/index.js'
+import Decoder from '../components/Decoder'
 
 const Education = () => {
-
-    const openTranscript = (transcript) => {
-        return () => {
-            window.open(transcript, '_blank', 'noreferrer')
-        }
+    const openTranscript = (transcript) => () => {
+        if (transcript) window.open(transcript, '_blank', 'noreferrer')
     }
+
     return (
         <section id='education' className='c-space my-4'>
-            <div className='w-full text-white-600'>
-                <h3 className='head-text'>My Education</h3>
-                <div className='education-container'>
-                    {educations.map(({id, provider, degree, duration, logo, gpa, transcript, skills, overview }) => (
-                        <div key={id} className='education-content_container'>
-                            <div className='flex justify-between lg:flex-row flex-col gap-10'>
-                                <div className='flex gap-10 justify-start items-center'>
-                                    <div className='flex flex-col h-full justify-start items-center py-2'>
-                                        <div className='education-content_logo'>
-                                            <img src={logo} alt="logo" className='w-full h-full rounded-lg' />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p className='education-text_provider'>{provider}</p>
-                                        <p className='education-text_major'>{degree} -- {duration}</p>
-                                        <p className='mt-2 text-2xl group-hover:text-neon-bright transition ease-in-out duration-500'>{gpa}</p>
-                                    </div>
-                                </div>
+            <h3 className='head-text'>
+                <Decoder text='Education' />
+            </h3>
 
-                                <div className='flex lg:flex-col flex-row justify-start items-end gap-2'>
-                                    {skills.map((skill, index) => (
-                                        <div className='bg-black-300 border border-black-300 rounded-lg px-3 py-1'>
-                                            <p key={index} className='text-xs'>
-                                                {skill}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <p className='mt-5'>
-                                {overview}
-                            </p>
-
-                            <hr className='border border-black-300 mt-10' />
+            <div className='mt-4 space-y-3 font-mono text-xs'>
+                {educations.map(({ id, provider, degree, duration, gpa, transcript, skills, overview }) => (
+                    <div key={id} className='border border-green-500/30 bg-black/60 rounded-md p-3 shadow-neon-sm hover:border-green-400/50 hover:shadow-neon transition-all'>
+                        <div className='flex items-baseline gap-2 flex-wrap'>
+                            <span className='text-green-500/60'>$</span>
+                            <span className='text-neon-bright font-semibold'>{provider}</span>
+                            <span className='text-green-500/40 ml-auto'>{duration}</span>
                         </div>
-                    ))}
-                </div>
-
+                        <p className='pl-4 mt-1 text-green-200/80'>{degree}</p>
+                        <p className='pl-4 mt-1 text-green-200/70'>
+                            <span className='text-green-500/60'>↳ </span>{gpa}
+                        </p>
+                        <p className='pl-4 mt-2 text-green-200/70 leading-relaxed'>{overview}</p>
+                        {skills?.length > 0 && (
+                            <div className='pl-4 mt-2 flex flex-wrap gap-1.5'>
+                                {skills.map((skill, i) => (
+                                    <span key={i} className='px-1.5 py-0.5 border border-green-500/30 rounded text-green-200/80'>
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+                        {transcript && (
+                            <div className='pl-4 mt-2'>
+                                <button
+                                    onClick={openTranscript(transcript)}
+                                    className='text-neon-bright hover:underline'
+                                >
+                                    [view transcript]
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
         </section>
     )
