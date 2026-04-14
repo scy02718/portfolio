@@ -137,7 +137,11 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
 
         const out = []
         if (stdout && stdout.length) {
-            for (const s of stdout) out.push({ kind: 'out', content: s })
+            for (const s of stdout) {
+                // stdout entries are either plain strings or {kind, content} for richer styling
+                if (typeof s === 'string') out.push({ kind: 'out', content: s })
+                else out.push(s)
+            }
         }
         if (error) out.push({ kind: 'err', content: error })
         if (out.length > 0) append(out)
@@ -249,6 +253,12 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                     }
                     if (line.kind === 'sys') {
                         return <div key={i} className='text-neon/60 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
+                    }
+                    if (line.kind === 'head') {
+                        return <div key={i} className='text-neon-bright font-semibold mt-1 whitespace-pre-wrap break-words'>{line.content}</div>
+                    }
+                    if (line.kind === 'hint') {
+                        return <div key={i} className='text-neon-faint/70 italic whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
                     }
                     return <div key={i} className='text-neon-glow/90 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
                 })}

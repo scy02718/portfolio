@@ -20,29 +20,65 @@ const LINKS = {
     email: 'mailto:scy02718@gmail.com',
 }
 
-export const HELP_LINES = [
-    { cmd: 'ls',                  desc: 'list available views' },
-    { cmd: 'cd <view>',           desc: 'switch to a view (alias: cat)' },
-    { cmd: 'pwd',                 desc: 'print current view' },
-    { cmd: 'whoami',              desc: 'print bio' },
-    { cmd: 'open <site>',         desc: 'github | linkedin | instagram | email' },
-    { cmd: 'mail',                desc: 'shortcut for cd contact' },
-    { cmd: 'history',             desc: 'show command history' },
-    { cmd: 'fortune',             desc: 'random programming wisdom' },
-    { cmd: 'cowsay <text>',       desc: 'a cow says text (also: pipe into me)' },
-    { cmd: 'figlet <text>',       desc: 'render text as block letters' },
-    { cmd: 'date',                desc: 'current date/time' },
-    { cmd: 'echo <text>',         desc: 'print text' },
-    { cmd: 'mute / unmute',       desc: 'toggle terminal sounds' },
-    { cmd: 'theme <name>',        desc: 'change color theme (try: theme list)' },
-    { cmd: 'top',                 desc: 'live process viewer (q/esc to exit)' },
-    { cmd: 'vim <file>',          desc: 'open a file in vim — try `vim about`' },
-    { cmd: 'sort [mode]',         desc: 'in skills view: alphabetical | proficiency' },
-    { cmd: 'scroll <dir>',        desc: 'scroll result pane: up | down | top | bottom' },
-    { cmd: 'grep <pattern>',      desc: 'filter stdin by pattern (use with |)' },
-    { cmd: 'wc',                  desc: 'count lines in stdin' },
-    { cmd: 'clear',               desc: 'clear terminal history' },
-    { cmd: 'help',                desc: 'show this help' },
+export const HELP_CATEGORIES = [
+    {
+        name: 'NAVIGATE',
+        items: [
+            ['ls',            'list available views'],
+            ['cd <view>',     'switch to a view (alias: cat)'],
+            ['pwd',           'print current view'],
+            ['mail',          'shortcut for cd contact'],
+        ],
+    },
+    {
+        name: 'INFO',
+        items: [
+            ['whoami',        'print bio'],
+            ['history',       'show command history'],
+            ['date',          'current date/time'],
+            ['echo <text>',   'print text'],
+            ['open <site>',   'github | linkedin | instagram | email'],
+        ],
+    },
+    {
+        name: 'VIEWERS',
+        items: [
+            ['vim <file>',    'open a file in vim — try `vim about`'],
+            ['top',           'live process viewer (q/esc to exit)'],
+        ],
+    },
+    {
+        name: 'FUN',
+        items: [
+            ['fortune',       'random programming wisdom'],
+            ['cowsay <text>', 'a cow says text (also: pipe into me)'],
+            ['figlet <text>', 'render text as block letters'],
+        ],
+    },
+    {
+        name: 'PIPES',
+        items: [
+            ['grep <pattern>', 'filter stdin by pattern'],
+            ['wc',             'count lines/words/chars in stdin'],
+        ],
+        example: 'fortune | cowsay   ·   ls | grep aws   ·   history | wc',
+    },
+    {
+        name: 'INTERACT (current view)',
+        items: [
+            ['sort [mode]',   'in skills view: alphabetical | proficiency'],
+            ['scroll <dir>',  'scroll result pane: up | down | top | bottom'],
+        ],
+    },
+    {
+        name: 'SYSTEM',
+        items: [
+            ['theme <name>',  'change color theme (try: theme list)'],
+            ['mute / unmute', 'toggle terminal sounds'],
+            ['clear',         'clear terminal history'],
+            ['help',          'show this help'],
+        ],
+    },
 ]
 
 const cowsayLines = (text) => {
@@ -88,9 +124,21 @@ const vimImpl = (args, stdin, ctx) => {
 }
 
 export const commands = {
-    help: () => ({
-        stdout: HELP_LINES.map(({ cmd, desc }) => `  ${cmd.padEnd(18)}${desc}`),
-    }),
+    help: () => {
+        const lines = []
+        for (let i = 0; i < HELP_CATEGORIES.length; i++) {
+            const cat = HELP_CATEGORIES[i]
+            if (i > 0) lines.push('')
+            lines.push({ kind: 'head', content: cat.name })
+            for (const [cmd, desc] of cat.items) {
+                lines.push(`  ${cmd.padEnd(16)}${desc}`)
+            }
+            if (cat.example) {
+                lines.push({ kind: 'hint', content: `  └─ ${cat.example}` })
+            }
+        }
+        return { stdout: lines }
+    },
 
     ls: (args, stdin, ctx) => ({
         // One per line so `ls | grep X` works
@@ -253,6 +301,11 @@ export const commands = {
 
 const tokenize = (segment) => segment.trim().split(/\s+/).filter(Boolean)
 
+// Strip rich {kind, content} wrappers down to plain strings so intermediate
+// pipe stages always see flat string[] as stdin.
+const flatten = (out) =>
+    (out || []).map((s) => (typeof s === 'string' ? s : s.content || ''))
+
 export const runPipeline = (line, ctx) => {
     const trimmed = line.trim()
     if (!trimmed) return { stdout: [], error: null }
@@ -261,7 +314,9 @@ export const runPipeline = (line, ctx) => {
     if (segments.length === 0) return { stdout: [], error: null }
 
     let stdin = []
-    for (const seg of segments) {
+    for (let i = 0; i < segments.length; i++) {
+        const seg = segments[i]
+        const isLast = i === segments.length - 1
         const tokens = tokenize(seg)
         if (tokens.length === 0) continue
         const cmdName = tokens[0].toLowerCase()
@@ -274,10 +329,11 @@ export const runPipeline = (line, ctx) => {
 
         const result = fn(args, stdin, ctx)
         if (result.error) {
-            // If the failing command also returned partial stdout (e.g., vim with hint), include it
             return { stdout: result.stdout || [], error: result.error }
         }
-        stdin = result.stdout || []
+        // Last segment keeps rich items so the renderer can style them.
+        // Intermediate segments get flattened so grep/wc see plain strings.
+        stdin = isLast ? (result.stdout || []) : flatten(result.stdout)
     }
 
     return { stdout: stdin, error: null }
