@@ -3,6 +3,7 @@ import fortunes from '../lib/fortunes'
 import { figlet } from '../lib/figletFont'
 import * as settings from '../lib/settings'
 import { playClick, playEnter } from '../lib/sounds'
+import { themes, applyTheme, getCurrentTheme, themeNames } from '../lib/themes'
 
 const buildBootLines = () => {
     const now = new Date()
@@ -49,6 +50,7 @@ const HELP_LINES = [
     { cmd: 'date',                desc: 'current date/time' },
     { cmd: 'echo <text>',         desc: 'print text' },
     { cmd: 'mute / unmute',       desc: 'toggle terminal sounds' },
+    { cmd: 'theme <name>',        desc: 'change color theme (try: theme list)' },
     { cmd: 'clear',               desc: 'clear terminal history' },
     { cmd: 'help',                desc: 'show this help' },
 ]
@@ -248,6 +250,27 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                 print('sound on')
                 break
             }
+            case 'theme': {
+                if (!arg || arg === 'list') {
+                    const current = getCurrentTheme()
+                    append([
+                        { kind: 'out', content: 'available themes:' },
+                        ...themeNames().map((name) => ({
+                            kind: 'out',
+                            content: `  ${name === current ? '*' : ' '} ${name.padEnd(12)}${themes[name].label}`,
+                        })),
+                        { kind: 'out', content: '' },
+                        { kind: 'out', content: 'usage: theme <name>' },
+                    ])
+                    break
+                }
+                if (applyTheme(arg.toLowerCase())) {
+                    print(`theme → ${arg.toLowerCase()}`)
+                } else {
+                    print(`theme: ${arg}: unknown — try \`theme list\``, 'err')
+                }
+                break
+            }
             case 'sudo': {
                 print(`sudo: ${arg}: nice try.`, 'err')
                 break
@@ -314,37 +337,37 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
     const promptPath = `~/${currentView}`
 
     return (
-        <div className='flex flex-col h-full bg-black/90 border-r border-green-500/30 font-mono text-xs'>
-            <div className='flex items-center gap-2 px-3 py-2 border-b border-green-500/20 bg-black/60 shrink-0'>
+        <div className='flex flex-col h-full bg-black/90 border-r border-neon/30 font-mono text-xs'>
+            <div className='flex items-center gap-2 px-3 py-2 border-b border-neon/20 bg-black/60 shrink-0'>
                 <span className='w-2.5 h-2.5 rounded-full bg-red-500/70' />
                 <span className='w-2.5 h-2.5 rounded-full bg-yellow-500/70' />
-                <span className='w-2.5 h-2.5 rounded-full bg-green-500/70' />
-                <span className='ml-3 text-green-300/80'>samuel@portfolio: <span className='text-neon-bright'>{promptPath}</span></span>
-                <span className='ml-auto text-green-500/60 tabular-nums'>[{formatClock(now)}]</span>
-                <span className='ml-2 text-green-500/40 hidden sm:inline'>— zsh</span>
+                <span className='w-2.5 h-2.5 rounded-full bg-neon/70' />
+                <span className='ml-3 text-neon-faint/80'>samuel@portfolio: <span className='text-neon-bright'>{promptPath}</span></span>
+                <span className='ml-auto text-neon/60 tabular-nums'>[{formatClock(now)}]</span>
+                <span className='ml-2 text-neon/40 hidden sm:inline'>— zsh</span>
             </div>
 
             <div
                 ref={scrollRef}
-                className='flex-1 overflow-y-auto p-3 text-green-200/90 leading-relaxed'
+                className='flex-1 overflow-y-auto p-3 text-neon-glow/90 leading-relaxed'
                 onClick={() => inputRef.current?.focus()}
             >
                 {history.map((line, i) => {
                     if (line.kind === 'cmd') {
                         return (
                             <div key={i} className='whitespace-pre-wrap break-words'>
-                                <span className='text-green-500/70'>samuel@portfolio:</span>
+                                <span className='text-neon/70'>samuel@portfolio:</span>
                                 <span className='text-neon-bright'>~/{line.view || currentView}</span>
-                                <span className='text-green-500/70'>$ </span>
-                                <span className='text-green-100'>{line.content}</span>
+                                <span className='text-neon/70'>$ </span>
+                                <span className='text-neon-glow'>{line.content}</span>
                             </div>
                         )
                     }
                     if (line.kind === 'boot-cmd') {
                         return (
                             <div key={i} className='whitespace-pre-wrap break-words'>
-                                <span className='text-green-500/70'>$ </span>
-                                <span className='text-green-100'>{line.content}</span>
+                                <span className='text-neon/70'>$ </span>
+                                <span className='text-neon-glow'>{line.content}</span>
                             </div>
                         )
                     }
@@ -352,7 +375,7 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                         return (
                             <div key={i} className='whitespace-pre-wrap break-words'>
                                 <span className='text-neon-bright'>[ OK ]</span>
-                                <span className='text-green-200/80'> {line.content}</span>
+                                <span className='text-neon-glow/80'> {line.content}</span>
                             </div>
                         )
                     }
@@ -360,15 +383,15 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                         return <div key={i} className='text-red-400/90 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
                     }
                     if (line.kind === 'sys') {
-                        return <div key={i} className='text-green-500/60 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
+                        return <div key={i} className='text-neon/60 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
                     }
-                    return <div key={i} className='text-green-200/90 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
+                    return <div key={i} className='text-neon-glow/90 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
                 })}
 
                 <div className='flex items-center mt-1'>
-                    <span className='text-green-500/70'>samuel@portfolio:</span>
+                    <span className='text-neon/70'>samuel@portfolio:</span>
                     <span className='text-neon-bright'>{promptPath}</span>
-                    <span className='text-green-500/70'>$&nbsp;</span>
+                    <span className='text-neon/70'>$&nbsp;</span>
                     <input
                         ref={inputRef}
                         autoFocus
@@ -377,7 +400,7 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                         onKeyDown={onKeyDown}
                         spellCheck={false}
                         autoComplete='off'
-                        className='flex-1 bg-transparent outline-none text-green-100 caret-neon-bright'
+                        className='flex-1 bg-transparent outline-none text-neon-glow caret-neon-bright'
                     />
                 </div>
             </div>

@@ -11,15 +11,15 @@ const Experience = () => {
 
             <div className='mt-4 space-y-3 font-mono text-xs'>
                 {workExperiences.map(({ id, name, pos, duration, title }) => (
-                    <div key={id} className='border border-green-500/30 bg-black/60 rounded-md p-3 shadow-neon-sm hover:border-green-400/50 hover:shadow-neon transition-all'>
+                    <div key={id} className='border border-neon/30 bg-black/60 rounded-md p-3 shadow-neon-sm hover:border-neon-bright/50 hover:shadow-neon transition-all'>
                         <div className='flex items-baseline gap-2 flex-wrap'>
-                            <span className='text-green-500/60'>$</span>
+                            <span className='text-neon/60'>$</span>
                             <span className='text-neon-bright font-semibold'>{name}</span>
-                            <span className='text-green-500/40'>—</span>
-                            <span className='text-green-200/80'>{pos}</span>
-                            <span className='text-green-500/40 ml-auto'>{duration}</span>
+                            <span className='text-neon/40'>—</span>
+                            <span className='text-neon-glow/80'>{pos}</span>
+                            <span className='text-neon/40 ml-auto'>{duration}</span>
                         </div>
-                        <p className='mt-2 text-green-200/70 leading-relaxed pl-4'>{title}</p>
+                        <p className='mt-2 text-neon-glow/70 leading-relaxed pl-4'>{title}</p>
                     </div>
                 ))}
             </div>

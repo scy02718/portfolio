@@ -23,34 +23,34 @@ const Skills = () => {
                 </h3>
                 <button
                     onClick={toggleFilter}
-                    className='px-2 py-1 text-xs font-mono border border-green-500/30 rounded text-neon-bright hover:border-neon-bright hover:bg-green-500/10 transition-all'
+                    className='px-2 py-1 text-xs font-mono border border-neon/30 rounded text-neon-bright hover:border-neon-bright hover:bg-neon/10 transition-all'
                 >
                     sort: {filterBy}
                 </button>
             </div>
 
             <div className='mt-4 space-y-3 font-mono text-xs'>
-                <p className='text-green-500/60'>$ ls ./strengths</p>
+                <p className='text-neon/60'>$ ls ./strengths</p>
                 <ul className='pl-3 space-y-1'>
                     {myStrengths.map(({ name, desc }, i) => (
-                        <li key={i} className='text-green-200/80'>
+                        <li key={i} className='text-neon-glow/80'>
                             <span className='text-neon-bright'>{String(i + 1).padStart(2, '0')} </span>
                             <span className='font-semibold text-neon-bright'>{name}</span>
-                            <span className='text-green-500/50'> — </span>
-                            <span className='text-green-200/70'>{desc}</span>
+                            <span className='text-neon/50'> — </span>
+                            <span className='text-neon-glow/70'>{desc}</span>
                         </li>
                     ))}
                 </ul>
 
-                <p className='text-green-500/60 mt-4'>$ cat skills.json</p>
+                <p className='text-neon/60 mt-4'>$ cat skills.json</p>
                 <div className='grid grid-cols-2 sm:grid-cols-3 gap-1.5 pl-3'>
                     {sorted.map(({ name, type }, i) => (
                         <div
                             key={i}
-                            className='border border-green-500/30 bg-black/60 rounded px-2 py-1 hover:border-neon-bright hover:bg-green-500/5 transition-all'
+                            className='border border-neon/30 bg-black/60 rounded px-2 py-1 hover:border-neon-bright hover:bg-neon/5 transition-all'
                         >
                             <p className='text-neon-bright font-semibold'>{name}</p>
-                            <p className='text-green-500/60 text-[10px]'>{type}</p>
+                            <p className='text-neon/60 text-[10px]'>{type}</p>
                         </div>
                     ))}
                 </div>

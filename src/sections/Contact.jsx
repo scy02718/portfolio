@@ -43,8 +43,8 @@ const Contact = () => {
                 <Decoder text='Contact' />
             </h3>
 
-            <p className='mt-3 text-xs text-green-200/70 font-mono leading-relaxed'>
-                <span className='text-green-500/60'>$</span> echo "Drop a message — I read every one."
+            <p className='mt-3 text-xs text-neon-glow/70 font-mono leading-relaxed'>
+                <span className='text-neon/60'>$</span> echo "Drop a message — I read every one."
             </p>
 
             <form ref={formRef} onSubmit={handleSubmit} className='mt-4 space-y-4 font-mono text-xs'>

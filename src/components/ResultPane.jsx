@@ -25,14 +25,14 @@ const ResultPane = ({ view }) => {
 
     return (
         <div className='flex flex-col h-full bg-black/70 overflow-hidden'>
-            <div className='flex items-center gap-2 px-3 py-2 border-b border-green-500/20 bg-black/60 shrink-0 font-mono text-xs'>
+            <div className='flex items-center gap-2 px-3 py-2 border-b border-neon/20 bg-black/60 shrink-0 font-mono text-xs'>
                 <span className='w-2.5 h-2.5 rounded-full bg-red-500/70' />
                 <span className='w-2.5 h-2.5 rounded-full bg-yellow-500/70' />
-                <span className='w-2.5 h-2.5 rounded-full bg-green-500/70' />
-                <span className='ml-3 text-green-300/80'>
+                <span className='w-2.5 h-2.5 rounded-full bg-neon/70' />
+                <span className='ml-3 text-neon-faint/80'>
                     samuel@portfolio: <span className='text-neon-bright'>~/{view}</span>
                 </span>
-                <span className='ml-auto text-green-500/40 hidden sm:inline'>— viewer</span>
+                <span className='ml-auto text-neon/40 hidden sm:inline'>— viewer</span>
             </div>
 
             <div className='flex-1 overflow-y-auto'>

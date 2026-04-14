@@ -1,10 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Terminal from './components/Terminal'
 import ResultPane from './components/ResultPane'
+import { applyTheme, getCurrentTheme } from './lib/themes'
 
 const App = () => {
   const [view, setView] = useState('home')
   const terminalRef = useRef(null)
+
+  // Apply persisted theme on first paint
+  useEffect(() => {
+    applyTheme(getCurrentTheme())
+  }, [])
 
   // ⌘K / Ctrl+K focuses the terminal input
   useEffect(() => {

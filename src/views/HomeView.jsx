@@ -13,24 +13,24 @@ const HomeView = () => {
         <section className='c-space my-4 font-mono'>
             <pre className='text-neon-bright text-[10px] sm:text-xs leading-tight whitespace-pre overflow-x-auto'>{banner}</pre>
 
-            <div className='mt-4 space-y-1 text-green-200/90 text-sm'>
+            <div className='mt-4 space-y-1 text-neon-glow/90 text-sm'>
                 <p>
-                    <span className='text-green-500/60'>$</span> <Decoder text='whoami' className='text-neon-bright' />
+                    <span className='text-neon/60'>$</span> <Decoder text='whoami' className='text-neon-bright' />
                 </p>
                 <p className='pl-3'>samuel yoo — software development engineer @ aws</p>
                 <p className='pl-3'>bse(hons) software engineering, university of auckland</p>
                 <p className='pl-3'>auckland, new zealand</p>
             </div>
 
-            <div className='mt-5 space-y-1 text-green-200/90 text-sm'>
+            <div className='mt-5 space-y-1 text-neon-glow/90 text-sm'>
                 <p>
-                    <span className='text-green-500/60'>$</span> <Decoder text='cat README.md' className='text-neon-bright' speed={22} />
+                    <span className='text-neon/60'>$</span> <Decoder text='cat README.md' className='text-neon-bright' speed={22} />
                 </p>
-                <p className='pl-3 text-green-200/70 leading-relaxed'>
+                <p className='pl-3 text-neon-glow/70 leading-relaxed'>
                     welcome to my portfolio. this site is a terminal — type{' '}
                     <span className='text-neon-bright'>help</span> in the prompt on the left to see what you can do.
                 </p>
-                <p className='pl-3 text-green-200/70 leading-relaxed'>
+                <p className='pl-3 text-neon-glow/70 leading-relaxed'>
                     try{' '}
                     <span className='text-neon-bright'>ls</span>,{' '}
                     <span className='text-neon-bright'>cd about</span>,{' '}
@@ -39,11 +39,11 @@ const HomeView = () => {
                 </p>
             </div>
 
-            <div className='mt-5 space-y-1 text-green-200/90 text-sm'>
+            <div className='mt-5 space-y-1 text-neon-glow/90 text-sm'>
                 <p>
-                    <span className='text-green-500/60'>$</span> <Decoder text='ls ./social' className='text-neon-bright' />
+                    <span className='text-neon/60'>$</span> <Decoder text='ls ./social' className='text-neon-bright' />
                 </p>
-                <ul className='pl-3 space-y-0.5 text-green-200/70'>
+                <ul className='pl-3 space-y-0.5 text-neon-glow/70'>
                     <li>
                         <a href='https://github.com/scy02718' target='_blank' rel='noreferrer' className='hover:text-neon-bright transition-colors'>
                             github.com/scy02718
