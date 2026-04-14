@@ -4,6 +4,7 @@ import { figlet } from '../lib/figletFont'
 import * as settings from '../lib/settings'
 import { playClick, playEnter } from '../lib/sounds'
 import { themes, applyTheme, getCurrentTheme, themeNames } from '../lib/themes'
+import { parseFileName, fileNames } from '../lib/viewContent'
 
 const buildBootLines = () => {
     const now = new Date()
@@ -35,7 +36,7 @@ const buildBootLines = () => {
 }
 
 const VIEWS = ['home', 'about', 'education', 'experience', 'certificates', 'awards', 'skills', 'contact']
-const TAKEOVER_VIEWS = new Set(['top'])
+const TAKEOVER_VIEWS = new Set(['top', 'vim'])
 
 const HELP_LINES = [
     { cmd: 'ls',                  desc: 'list available views' },
@@ -53,6 +54,7 @@ const HELP_LINES = [
     { cmd: 'mute / unmute',       desc: 'toggle terminal sounds' },
     { cmd: 'theme <name>',        desc: 'change color theme (try: theme list)' },
     { cmd: 'top',                 desc: 'live process viewer (q/esc to exit)' },
+    { cmd: 'vim <file>',          desc: 'open a file in vim — try `vim about`' },
     { cmd: 'clear',               desc: 'clear terminal history' },
     { cmd: 'help',                desc: 'show this help' },
 ]
@@ -302,6 +304,23 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
             case 'top': {
                 onChangeView('top')
                 print('(press q or esc to exit)')
+                break
+            }
+            case 'vim':
+            case 'nvim':
+            case 'vi': {
+                if (!arg) {
+                    print(`${cmd}: missing file — try \`${cmd} about\``, 'err')
+                    break
+                }
+                const file = parseFileName(arg)
+                if (!file) {
+                    print(`E484: Can't open file ${arg}`, 'err')
+                    print(`available: ${fileNames().join(' ')}`)
+                    break
+                }
+                onChangeView('vim', file)
+                print(`(in vim — type :q to exit)`)
                 break
             }
             case 'sudo': {
