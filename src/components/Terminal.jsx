@@ -35,6 +35,7 @@ const buildBootLines = () => {
 }
 
 const VIEWS = ['home', 'about', 'education', 'experience', 'certificates', 'awards', 'skills', 'contact']
+const TAKEOVER_VIEWS = new Set(['top'])
 
 const HELP_LINES = [
     { cmd: 'ls',                  desc: 'list available views' },
@@ -51,6 +52,7 @@ const HELP_LINES = [
     { cmd: 'echo <text>',         desc: 'print text' },
     { cmd: 'mute / unmute',       desc: 'toggle terminal sounds' },
     { cmd: 'theme <name>',        desc: 'change color theme (try: theme list)' },
+    { cmd: 'top',                 desc: 'live process viewer (q/esc to exit)' },
     { cmd: 'clear',               desc: 'clear terminal history' },
     { cmd: 'help',                desc: 'show this help' },
 ]
@@ -139,6 +141,18 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
     useImperativeHandle(ref, () => ({
         focus: () => inputRef.current?.focus(),
     }))
+
+    // Blur the input when entering a takeover view so global q/Esc work.
+    // Re-focus when leaving so typing resumes immediately.
+    useEffect(() => {
+        if (TAKEOVER_VIEWS.has(currentView)) {
+            inputRef.current?.blur()
+        } else {
+            // tiny delay so the focus settles after AnimatePresence transitions
+            const id = setTimeout(() => inputRef.current?.focus(), 50)
+            return () => clearTimeout(id)
+        }
+    }, [currentView])
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -283,6 +297,11 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                 } else {
                     print(`theme: ${arg}: unknown — try \`theme list\``, 'err')
                 }
+                break
+            }
+            case 'top': {
+                onChangeView('top')
+                print('(press q or esc to exit)')
                 break
             }
             case 'sudo': {

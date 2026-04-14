@@ -1,6 +1,7 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import HomeView from '../views/HomeView'
+import TopView from '../views/TopView'
 import About from '../sections/About'
 import Education from '../sections/Education'
 import Experience from '../sections/Experience'
@@ -18,6 +19,7 @@ const VIEW_MAP = {
     awards: Awards,
     skills: Skills,
     contact: Contact,
+    top: TopView,
 }
 
 const ResultPane = ({ view }) => {
