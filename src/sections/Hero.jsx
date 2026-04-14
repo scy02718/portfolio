@@ -11,6 +11,7 @@ import Cube from '../components/Cube.jsx'
 import Rings from '../components/Rings.jsx'
 import HeroCamera from '../components/HeroCamera.jsx'
 import Button from '../components/Button.jsx'
+import RoomLights from '../components/RoomLights.jsx'
 
 const Hero = () => {
     // useControls is a hook that is used to create controls for the model
@@ -120,11 +121,8 @@ const Hero = () => {
                             <Rings position={sizes.ringPosition}/>
                         </group>
 
-                        {/* Without Light, we cannot see the model */}
-                        {/* AmbientLight is a light that affects all objects in the scene equally */}
-                        <ambientLight intensity={1} />
-                        {/* DirectionalLight is a light that is emitted from a specific direction */}
-                        <directionalLight position={[10, 10, 10]} intensity={0.5} />
+                        {/* Dynamic room lighting — pulsing CRT glow + cursor-tracking rim spotlight */}
+                        <RoomLights />
                     </Suspense>
                 </Canvas>
 
