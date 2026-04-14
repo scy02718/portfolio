@@ -76,6 +76,20 @@ const formatClock = (date) => {
     return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
 }
 
+// Compute the ghost autocomplete suffix for the current input.
+// Returns the text that should appear dimmed after the cursor, or '' if no unique suggestion.
+const computeGhost = (input) => {
+    if (!input) return ''
+    const parts = input.split(/\s+/)
+    if (parts.length !== 2) return ''
+    const [cmd, partial] = parts
+    if (!partial) return ''
+    if (!['cd', 'cat'].includes(cmd.toLowerCase())) return ''
+    const matches = VIEWS.filter((v) => v.startsWith(partial))
+    if (matches.length !== 1) return ''
+    return matches[0].slice(partial.length)
+}
+
 const LINKS = {
     github: 'https://github.com/scy02718',
     linkedin: 'https://linkedin.com/in/chanyoo/',
@@ -315,9 +329,17 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                 setHistoryCursor(next)
                 setInput(cmdHistory[next])
             }
+        } else if (e.key === 'ArrowRight') {
+            // Accept ghost autocomplete with → when cursor is at end of input
+            const ghost = computeGhost(input)
+            const atEnd = inputRef.current && inputRef.current.selectionStart === input.length
+            if (ghost && atEnd) {
+                e.preventDefault()
+                setInput(input + ghost)
+            }
         } else if (e.key === 'Tab') {
             e.preventDefault()
-            // simple completion for `cd <view>`
+            // Tab also accepts ghost (and falls through to the multi-match listing)
             const parts = input.split(/\s+/)
             if (parts[0] === 'cd' || parts[0] === 'cat') {
                 const partial = parts[1] || ''
@@ -388,21 +410,34 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                     return <div key={i} className='text-neon-glow/90 whitespace-pre-wrap break-words'>{line.content || '\u00a0'}</div>
                 })}
 
-                <div className='flex items-center mt-1'>
-                    <span className='text-neon/70'>samuel@portfolio:</span>
-                    <span className='text-neon-bright'>{promptPath}</span>
-                    <span className='text-neon/70'>$&nbsp;</span>
-                    <input
-                        ref={inputRef}
-                        autoFocus
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={onKeyDown}
-                        spellCheck={false}
-                        autoComplete='off'
-                        className='flex-1 bg-transparent outline-none text-neon-glow caret-neon-bright'
-                    />
-                </div>
+                {(() => {
+                    const ghost = computeGhost(input)
+                    return (
+                        <div className='flex items-center mt-1'>
+                            <span className='text-neon/70'>samuel@portfolio:</span>
+                            <span className='text-neon-bright'>{promptPath}</span>
+                            <span className='text-neon/70'>$&nbsp;</span>
+                            <div className='relative flex-1 min-h-[1.25rem]'>
+                                {/* Visible layer — input value + ghost suggestion */}
+                                <div className='whitespace-pre pointer-events-none' aria-hidden>
+                                    <span className='text-neon-glow'>{input}</span>
+                                    <span className='text-neon/40 italic'>{ghost}</span>
+                                </div>
+                                {/* Real input on top, transparent text but visible caret */}
+                                <input
+                                    ref={inputRef}
+                                    autoFocus
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                    onKeyDown={onKeyDown}
+                                    spellCheck={false}
+                                    autoComplete='off'
+                                    className='absolute inset-0 w-full h-full bg-transparent text-transparent caret-neon-bright outline-none p-0 m-0 border-0'
+                                />
+                            </div>
+                        </div>
+                    )
+                })()}
             </div>
         </div>
     )
