@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import BootSequence from './components/BootSequence'
 import Terminal from './components/Terminal'
 import ResultPane from './components/ResultPane'
 
@@ -22,7 +21,6 @@ const App = () => {
 
   return (
     <>
-      <BootSequence />
       <main className='h-screen w-screen flex flex-col md:flex-row overflow-hidden'>
         <div className='md:w-[30%] w-full h-1/2 md:h-full'>
           <Terminal ref={terminalRef} currentView={view} onChangeView={setView} />

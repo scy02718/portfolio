@@ -1,4 +1,37 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import fortunes from '../lib/fortunes'
+import { figlet } from '../lib/figletFont'
+import * as settings from '../lib/settings'
+import { playClick, playEnter } from '../lib/sounds'
+
+const buildBootLines = () => {
+    const now = new Date()
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const pad = (n) => String(n).padStart(2, '0')
+    const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`
+    const date = String(now.getDate()).padStart(2, ' ')
+    // TEST-NET-3 reserved range — won't accidentally point anywhere real
+    const ip = `203.0.113.${Math.floor(Math.random() * 254) + 1}`
+    const lastLogin = `Last login: ${days[now.getDay()]} ${months[now.getMonth()]} ${date} ${time} ${now.getFullYear()} from ${ip}`
+
+    return [
+        { delay: 0,    kind: 'boot-cmd', content: 'ssh samuel@portfolio.io' },
+        { delay: 350,  kind: 'sys',      content: "samuel@portfolio.io's password: ********" },
+        { delay: 700,  kind: 'sys',      content: lastLogin },
+        { delay: 850,  kind: 'sys',      content: '' },
+        { delay: 950,  kind: 'sys',      content: 'Welcome to samuel-portfolio v1.0.0' },
+        { delay: 1100, kind: 'sys',      content: '' },
+        { delay: 1200, kind: 'boot-ok',  content: 'mounting /dev/portfolio' },
+        { delay: 1380, kind: 'boot-ok',  content: 'decrypting samuel.profile ........ 100%' },
+        { delay: 1560, kind: 'boot-ok',  content: 'establishing secure shell on :443' },
+        { delay: 1740, kind: 'boot-ok',  content: 'starting react@18 runtime' },
+        { delay: 1920, kind: 'boot-ok',  content: 'session ready.' },
+        { delay: 2080, kind: 'sys',      content: '' },
+        { delay: 2180, kind: 'sys',      content: 'tip: type `help` to see available commands' },
+        { delay: 2300, kind: 'sys',      content: '' },
+    ]
+}
 
 const VIEWS = ['home', 'about', 'education', 'experience', 'certificates', 'awards', 'skills', 'contact']
 
@@ -9,11 +42,37 @@ const HELP_LINES = [
     { cmd: 'whoami',              desc: 'print bio' },
     { cmd: 'open <site>',         desc: 'github | linkedin | instagram | email' },
     { cmd: 'mail',                desc: 'shortcut for cd contact' },
+    { cmd: 'history',             desc: 'show command history' },
+    { cmd: 'fortune',             desc: 'random programming wisdom' },
+    { cmd: 'cowsay <text>',       desc: 'a cow says text' },
+    { cmd: 'figlet <text>',       desc: 'render text as block letters' },
     { cmd: 'date',                desc: 'current date/time' },
     { cmd: 'echo <text>',         desc: 'print text' },
+    { cmd: 'mute / unmute',       desc: 'toggle terminal sounds' },
     { cmd: 'clear',               desc: 'clear terminal history' },
     { cmd: 'help',                desc: 'show this help' },
 ]
+
+const cowsay = (text) => {
+    const msg = text && text.trim() ? text : 'Moo!'
+    const top = ' ' + '_'.repeat(msg.length + 2)
+    const bottom = ' ' + '-'.repeat(msg.length + 2)
+    return [
+        top,
+        `< ${msg} >`,
+        bottom,
+        '        \\   ^__^',
+        '         \\  (oo)\\_______',
+        '            (__)\\       )\\/\\',
+        '                ||----w |',
+        '                ||     ||',
+    ]
+}
+
+const formatClock = (date) => {
+    const pad = (n) => String(n).padStart(2, '0')
+    return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+}
 
 const LINKS = {
     github: 'https://github.com/scy02718',
@@ -23,15 +82,43 @@ const LINKS = {
 }
 
 const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
-    const [history, setHistory] = useState(() => ([
-        { kind: 'sys', content: 'samuel-portfolio v1.0.0 — type `help` for available commands' },
-        { kind: 'sys', content: '' },
-    ]))
+    const [history, setHistory] = useState([])
     const [input, setInput] = useState('')
     const [cmdHistory, setCmdHistory] = useState([])
     const [historyCursor, setHistoryCursor] = useState(-1)
     const inputRef = useRef(null)
     const scrollRef = useRef(null)
+    const [now, setNow] = useState(() => new Date())
+
+    useEffect(() => {
+        const id = setInterval(() => setNow(new Date()), 1000)
+        return () => clearInterval(id)
+    }, [])
+
+    // Boot stream — only on first session visit. Repeat visits get an instant welcome.
+    useEffect(() => {
+        const alreadyBooted = sessionStorage.getItem('booted') === '1'
+        if (alreadyBooted) {
+            setHistory([
+                { kind: 'sys', content: 'samuel-portfolio v1.0.0 — type `help` for available commands' },
+                { kind: 'sys', content: '' },
+            ])
+            return
+        }
+        const lines = buildBootLines()
+        const timers = lines.map((line) =>
+            setTimeout(() => {
+                setHistory((h) => [...h, { kind: line.kind, content: line.content }])
+            }, line.delay),
+        )
+        const finalize = setTimeout(() => {
+            sessionStorage.setItem('booted', '1')
+        }, lines[lines.length - 1].delay + 100)
+        return () => {
+            timers.forEach(clearTimeout)
+            clearTimeout(finalize)
+        }
+    }, [])
 
     useImperativeHandle(ref, () => ({
         focus: () => inputRef.current?.focus(),
@@ -121,8 +208,44 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                 print(new Date().toString())
                 break
             }
+            case 'history': {
+                if (cmdHistory.length === 0) {
+                    print('history: no commands yet')
+                    break
+                }
+                const width = String(cmdHistory.length).length
+                append(cmdHistory.map((c, i) => ({
+                    kind: 'out',
+                    content: `  ${String(i + 1).padStart(width, ' ')}  ${c}`,
+                })))
+                break
+            }
+            case 'fortune': {
+                const f = fortunes[Math.floor(Math.random() * fortunes.length)]
+                print(f)
+                break
+            }
+            case 'cowsay': {
+                append(cowsay(arg).map((line) => ({ kind: 'out', content: line })))
+                break
+            }
+            case 'figlet': {
+                if (!arg) { print('figlet: missing text', 'err'); break }
+                append(figlet(arg).map((line) => ({ kind: 'out', content: line })))
+                break
+            }
             case 'clear': {
                 setHistory([])
+                break
+            }
+            case 'mute': {
+                settings.set('sound', false)
+                print('sound off')
+                break
+            }
+            case 'unmute': {
+                settings.set('sound', true)
+                print('sound on')
                 break
             }
             case 'sudo': {
@@ -141,6 +264,13 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
     }
 
     const onKeyDown = (e) => {
+        // Sound feedback — printable keys + backspace click, Enter thunks
+        if (e.key === 'Enter') {
+            playEnter()
+        } else if (e.key.length === 1 || e.key === 'Backspace') {
+            playClick()
+        }
+
         if (e.key === 'Enter') {
             e.preventDefault()
             handleCommand(input)
@@ -190,7 +320,8 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                 <span className='w-2.5 h-2.5 rounded-full bg-yellow-500/70' />
                 <span className='w-2.5 h-2.5 rounded-full bg-green-500/70' />
                 <span className='ml-3 text-green-300/80'>samuel@portfolio: <span className='text-neon-bright'>{promptPath}</span></span>
-                <span className='ml-auto text-green-500/40'>— zsh</span>
+                <span className='ml-auto text-green-500/60 tabular-nums'>[{formatClock(now)}]</span>
+                <span className='ml-2 text-green-500/40 hidden sm:inline'>— zsh</span>
             </div>
 
             <div
@@ -206,6 +337,22 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                                 <span className='text-neon-bright'>~/{line.view || currentView}</span>
                                 <span className='text-green-500/70'>$ </span>
                                 <span className='text-green-100'>{line.content}</span>
+                            </div>
+                        )
+                    }
+                    if (line.kind === 'boot-cmd') {
+                        return (
+                            <div key={i} className='whitespace-pre-wrap break-words'>
+                                <span className='text-green-500/70'>$ </span>
+                                <span className='text-green-100'>{line.content}</span>
+                            </div>
+                        )
+                    }
+                    if (line.kind === 'boot-ok') {
+                        return (
+                            <div key={i} className='whitespace-pre-wrap break-words'>
+                                <span className='text-neon-bright'>[ OK ]</span>
+                                <span className='text-green-200/80'> {line.content}</span>
                             </div>
                         )
                     }
