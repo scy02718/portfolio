@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { mySkills, myStrengths } from '../constants/index.js'
 import Decoder from '../components/Decoder'
+import { subscribe } from '../lib/eventBus'
 
 const Skills = () => {
     const [filterBy, setFilterBy] = useState('alphabetical')
@@ -8,6 +9,17 @@ const Skills = () => {
     const toggleFilter = () => {
         setFilterBy(filterBy === 'alphabetical' ? 'proficiency' : 'alphabetical')
     }
+
+    // Listen for terminal `sort` commands while this view is mounted
+    useEffect(() => {
+        return subscribe('skills:sort', (mode) => {
+            if (mode === 'alphabetical' || mode === 'proficiency') {
+                setFilterBy(mode)
+            } else {
+                setFilterBy((prev) => (prev === 'alphabetical' ? 'proficiency' : 'alphabetical'))
+            }
+        })
+    }, [])
 
     const sorted = [...mySkills].sort(
         filterBy === 'alphabetical'

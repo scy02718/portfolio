@@ -5,6 +5,8 @@ import * as settings from '../lib/settings'
 import { playClick, playEnter } from '../lib/sounds'
 import { themes, applyTheme, getCurrentTheme, themeNames } from '../lib/themes'
 import { parseFileName, fileNames } from '../lib/viewContent'
+import { emit } from '../lib/eventBus'
+import Presence from './Presence'
 
 const buildBootLines = () => {
     const now = new Date()
@@ -55,6 +57,8 @@ const HELP_LINES = [
     { cmd: 'theme <name>',        desc: 'change color theme (try: theme list)' },
     { cmd: 'top',                 desc: 'live process viewer (q/esc to exit)' },
     { cmd: 'vim <file>',          desc: 'open a file in vim — try `vim about`' },
+    { cmd: 'sort [mode]',         desc: 'in skills view: alphabetical | proficiency' },
+    { cmd: 'scroll <dir>',        desc: 'scroll result pane: up | down | top | bottom' },
     { cmd: 'clear',               desc: 'clear terminal history' },
     { cmd: 'help',                desc: 'show this help' },
 ]
@@ -306,6 +310,30 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                 print('(press q or esc to exit)')
                 break
             }
+            case 'sort': {
+                if (currentView !== 'skills') {
+                    print(`sort: only available in ~/skills (cd skills first)`, 'err')
+                    break
+                }
+                const mode = arg ? arg.toLowerCase() : null
+                if (mode && mode !== 'alphabetical' && mode !== 'proficiency') {
+                    print(`sort: ${arg}: unknown — use alphabetical | proficiency`, 'err')
+                    break
+                }
+                emit('skills:sort', mode)
+                print(`sort → ${mode || 'toggled'}`)
+                break
+            }
+            case 'scroll': {
+                const dir = arg ? arg.toLowerCase() : 'down'
+                if (!['up', 'down', 'top', 'bottom'].includes(dir)) {
+                    print(`scroll: ${arg}: unknown — use up | down | top | bottom`, 'err')
+                    break
+                }
+                emit('pane:scroll', dir)
+                print(`scroll ${dir}`)
+                break
+            }
             case 'vim':
             case 'nvim':
             case 'vi': {
@@ -477,6 +505,7 @@ const Terminal = forwardRef(({ currentView, onChangeView }, ref) => {
                     )
                 })()}
             </div>
+            <Presence />
         </div>
     )
 })

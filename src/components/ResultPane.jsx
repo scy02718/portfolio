@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { subscribe } from '../lib/eventBus'
 import HomeView from '../views/HomeView'
 import TopView from '../views/TopView'
 import VimView from '../views/VimView'
@@ -28,6 +29,20 @@ const ResultPane = ({ view, arg, onExitTakeover }) => {
     const ViewComponent = VIEW_MAP[view] || HomeView
     // Distinct key for vim/arg so AnimatePresence retransitions when file changes
     const key = view === 'vim' ? `vim:${arg ?? ''}` : view
+    const scrollRef = useRef(null)
+
+    // Listen for terminal `scroll` commands
+    useEffect(() => {
+        return subscribe('pane:scroll', (direction) => {
+            const el = scrollRef.current
+            if (!el) return
+            const step = el.clientHeight * 0.8
+            if (direction === 'up')         el.scrollBy({ top: -step,         behavior: 'smooth' })
+            else if (direction === 'down')  el.scrollBy({ top:  step,         behavior: 'smooth' })
+            else if (direction === 'top')   el.scrollTo({ top: 0,             behavior: 'smooth' })
+            else if (direction === 'bottom')el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' })
+        })
+    }, [])
 
     return (
         <div className='flex flex-col h-full bg-black/70 overflow-hidden'>
@@ -41,7 +56,7 @@ const ResultPane = ({ view, arg, onExitTakeover }) => {
                 <span className='ml-auto text-neon/40 hidden sm:inline'>— viewer</span>
             </div>
 
-            <div className='flex-1 overflow-y-auto'>
+            <div ref={scrollRef} className='flex-1 overflow-y-auto'>
                 <AnimatePresence mode='wait'>
                     <motion.div
                         key={key}
