@@ -582,13 +582,22 @@ export const navLinks = [
   
   export const workExperiences = [
     {
+      id: 0,
+      name: 'Google',
+      pos: 'Software Engineer, Android — Google Photos (Video Editing & Creations)',
+      duration: '2026 - Present',
+      title: "Google is one of the world's leading technology companies. As a Software Engineer on the Google Photos Video Editing & Creations Android team in Sydney, I am responsible for building and improving video editing and creation features for one of Google's most-used consumer apps, serving billions of users worldwide.",
+      icon: '/assets/google.png',
+      animation: 'salute',
+    },
+    {
       id: 1,
       name: 'Amazon Web Services (AWS)',
       pos: 'Software Development Engineer',
-      duration: '2025 - Present',
-      title: "Amazon Web Services (AWS) is a global leader of cloud computing platforms. It provides Cloud solutions to individuals, companies, and governments. As a Software Development Engineer, I am responsible for designing and implementing scalable and reliable software solutions that meet the needs of our customers.",
+      duration: '2025',
+      title: "Amazon Web Services (AWS) is a global leader of cloud computing platforms. It provides Cloud solutions to individuals, companies, and governments. As a Software Development Engineer, I designed and implemented scalable and reliable software solutions that met the needs of our customers.",
       icon: '/assets/amazon-web-services.png',
-      animation: 'salute',
+      animation: 'clapping',
     },
     {
       id: 2,

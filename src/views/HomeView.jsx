@@ -13,7 +13,7 @@ const TRICK_CATEGORIES = [
         name: 'PIPES',
         items: [
             ['fortune | cowsay',     'a cow speaks programming wisdom'],
-            ['whoami | grep aws',    'pipe and filter'],
+            ['whoami | grep google',  'pipe and filter'],
             ['ls | grep e',          'list views matching a pattern'],
             ['history | wc',         'count your commands'],
         ],
@@ -64,9 +64,9 @@ const HomeView = () => {
                 <p>
                     <span className='text-neon/60'>$</span> <Decoder text='whoami' className='text-neon-bright' />
                 </p>
-                <p className='pl-3'>samuel yoo — software development engineer @ aws</p>
+                <p className='pl-3'>samuel yoo — software engineer @ google photos (video editing & creations)</p>
                 <p className='pl-3'>bse(hons) software engineering, university of auckland</p>
-                <p className='pl-3'>auckland, new zealand</p>
+                <p className='pl-3'>sydney, australia</p>
             </div>
 
             <div className='mt-5 space-y-1 text-neon-glow/90 text-sm'>

@@ -16,7 +16,7 @@ const About = () => {
             <div className='grid md:grid-cols-3 grid-cols-1 gap-3 mt-4'>
                 <div className='grid-container md:col-span-1'>
                     <p className='grid-headtext'>$ whoami</p>
-                    <p className='grid-subtext'>Hi, I'm Samuel. Software Development Engineer at AWS, with a Software Engineering Degree from the University of Auckland.</p>
+                    <p className='grid-subtext'>Hi, I'm Samuel. Software Engineer on the Video Editing & Creations team at Google Photos, with a Software Engineering Degree from the University of Auckland.</p>
                 </div>
 
                 <div className='grid-container md:col-span-1'>
@@ -28,12 +28,12 @@ const About = () => {
 
                 <div className='grid-container md:col-span-1'>
                     <p className='grid-headtext'>$ pwd</p>
-                    <p className='grid-subtext'>/auckland/new_zealand — currently based in Auckland, NZ.</p>
+                    <p className='grid-subtext'>/sydney/australia — currently based in Sydney, Australia.</p>
                 </div>
 
                 <div className='grid-container md:col-span-2'>
                     <p className='grid-headtext'>$ cat profile.md</p>
-                    <p className='grid-subtext'>Recent Software Engineering graduate from the University of Auckland (GPA 8.55/9). Strong problem-solver, eager learner, building products that help people. Holds 3 AWS certifications and a deep background in software development practices — joining AWS as an SDE.</p>
+                    <p className='grid-subtext'>Software Engineer on the Video Editing & Creations team at Google Photos, Sydney. Graduate with First Class Honours in Software Engineering from the University of Auckland (GPA 8.55/9). Strong problem-solver, eager learner, building products that help people. Holds 5 AWS certifications and deep experience across cloud, ML, and full-stack development.</p>
                 </div>
 
                 <div className='grid-container md:col-span-1'>

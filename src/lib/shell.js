@@ -150,7 +150,7 @@ export const commands = {
     whoami: () => ({
         stdout: [
             'samuel yoo',
-            'software development engineer @ aws',
+            'software engineer, android — google photos (video editing & creations)',
             'bse(hons) software engineering — university of auckland',
         ],
     }),
